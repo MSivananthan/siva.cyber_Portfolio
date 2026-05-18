@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivananthan M. | Cyber Risk Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap");
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#020617',
+                            accent: '#a855f7', // Violet-500
+                            secondary: '#3b82f6', // Blue-500
+                            highlight: '#f472b6', // Pink-400
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                        'reverse-spin': 'reverse-spin 25s linear infinite',
+                        'data-pulse': 'data-pulse 2s ease-in-out infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                        'matrix-fade': 'matrix-fade 2s ease-in-out infinite',
+                        'radar': 'radar 4s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'reverse-spin': {
+                            from: { transform: 'rotate(360deg)' },
+                            to: { transform: 'rotate(0deg)' },
+                        },
+                        'data-pulse': {
+                            '0%, 100%': { opacity: 0.3, transform: 'scale(1)' },
+                            '50%': { opacity: 1, transform: 'scale(1.1)' },
+                        },
+                        glitch: {
+                            '0%, 100%': { transform: 'translate(0)' },
+                            '20%': { transform: 'translate(-2px, 2px)' },
+                            '40%': { transform: 'translate(-2px, -2px)' },
+                            '60%': { transform: 'translate(2px, 2px)' },
+                            '80%': { transform: 'translate(2px, -2px)' },
+                        },
+                        radar: {
+                            '0%': { transform: 'rotate(0deg)', opacity: '0.2' },
+                            '50%': { opacity: '0.6' },
+                            '100%': { transform: 'rotate(360deg)', opacity: '0.2' },
+                        }
+                    }
+                }
+            }
+        }
+    </style>
+    <style>
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(800%); }
+        }
+        .animate-scan {
+            animation: scan 4s linear infinite;
+        }
+
+        body {
+            background-color: #020617;
+            color: #cbd5e1;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4c1d95;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a855f7;
+        }
+
+        /* Reveal on Scroll */
+        .reveal-section {
+            opacity: 0;
+            filter: blur(15px);
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity, filter;
+        }
+
+        .reveal-section.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        .glass-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -20px rgba(168, 85, 247, 0.2);
+        }
+
+        .typewriter-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse at center, black, transparent 85%);
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 280px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+        }
+
+        .main-timeline { position: relative; }
+        .main-timeline::after {
+            content: ""; position: absolute; width: 2px;
+            border: 1px dashed rgba(168, 85, 247, 0.4);
+            top: 0; bottom: 0; left: 50%; margin-left: -1px;
+        }
+
+        .timeline { position: relative; width: 50%; }
+        .timeline::after {
+            content: ""; position: absolute; width: 20px; height: 20px;
+            right: -10px; background-color: #a855f7; box-shadow: 0 0 15px #a855f7;
+            top: 25px; border-radius: 50%; z-index: 1; border: 4px solid #020617;
+        }
+        .left { padding: 10px 50px 20px 0px; left: 0; }
+        .right { padding: 10px 0px 20px 50px; left: 50%; }
+
+        @media screen and (max-width: 768px) {
+            .main-timeline::after { left: 20px; }
+            .timeline { width: 100%; padding-left: 50px; padding-right: 0px; }
+            .timeline::after { left: 10px; right: auto; }
+            .right { left: 0%; }
+        }
+
+        #welcome-modal {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #welcome-modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9) translateY(20px);
+        }
+
+        .type-target {
+            min-height: 1.2em;
+            display: inline-block;
+        }
+    </style>
+    </head>
+    <body class="selection:bg-violet-500/30">
+
+        <!-- Custom Sleek Cyber HUD Toast (Non-intrusive floating telemetry notification) -->
+        <div id="welcome-modal" class="fixed bottom-6 right-6 z-[100] max-w-sm w-[90%] sm:w-full hidden p-1">
+            <div class="glass-card p-6 border-violet-500/30 relative overflow-hidden shadow-[0_10px_50px_rgba(168,85,247,0.15)] bg-obsidian/95 backdrop-blur-md">
+                <!-- Laser scanning line -->
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-violet-500 to-transparent animate-scan"></div>
+
+                <div class="flex items-start gap-4">
+                    <div class="p-2.5 bg-violet-500/10 rounded-lg border border-violet-500/20 shrink-0">
+                        <i data-lucide="terminal" class="w-6 h-6 text-violet-400"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="text-[10px] font-mono text-violet-400 tracking-widest uppercase">Uplink Status</span>
+                            <span class="flex h-2 w-2 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                        </div>
+                        <h3 class="text-sm font-bold text-white font-mono uppercase tracking-wider mb-2">Secure Session Initiated</h3>
+                        <div class="font-mono text-[11px] text-slate-400 leading-relaxed mb-4 border-l border-violet-500/30 pl-2">
+                            <div>SYS_LOAD: 100% // DECRYPTED</div>
+                            <div class="text-violet-400">SECURE_TUNNEL: ON_EDGE</div>
+                            <div class="text-slate-500">PING: 0.04ms (Level-05)</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="closeModal()" class="px-4 py-2 bg-violet-600/90 hover:bg-violet-500 text-white font-mono text-xs font-bold rounded transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Clear Alert
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Elements -->
+        <div class="fixed inset-0 z-[-1] bg-obsidian">
+            <div class="absolute inset-0 bg-grid opacity-30"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-obsidian/40 to-obsidian"></div>
+            <div id="data-stream-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+        </div>
+
+        <!-- Navigation (Fixed to top) -->
+        <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-obsidian/80 backdrop-blur-xl">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3 font-mono font-bold text-white group cursor-pointer">
+                    <div class="p-2 bg-violet-500/10 rounded-lg border border-violet-500/20 group-hover:border-violet-500/50 transition-all">
+                        <i data-lucide="shield" class="text-violet-400 group-hover:rotate-12 transition-transform w-6 h-6"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="tracking-tighter text-lg leading-none">Sivananthan_M.</span>
+                        <span class="text-[10px] text-violet-500 font-normal">SECURE_TUNNEL: ENCRYPTED</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex xl:gap-6 lg:gap-4 gap-2 text-[10px] lg:text-xs font-mono">
+                    <a href="#home" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Home</a>
+                    <a href="#about" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">About</a>
+                    <a href="#experience" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Experience</a>
+                    <a href="#systems" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Systems</a>
+                    <a href="#hands-on" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Hands-on</a>
+                    <a href="#impact" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Impact</a>
+                    <a href="#labs" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Labs</a>
+                    <a href="#academic" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Academic</a>
+                    <a href="#journey" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Journey</a>
+                    <a href="#blog" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Blog</a>
+                    <a href="#contact" class="hover:text-violet-400 transition-colors uppercase tracking-widest relative group">Contact</a>
+                </div>
+                <button class="md:hidden p-2 text-white"><i data-lucide="menu" class="w-6 h-6"></i></button>
+            </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto px-6 pt-40 pb-20">
+
+            <!-- Hero Section -->
+            <section id="home" class="min-h-[70vh] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-32 reveal-section">
+                <div class="order-2 lg:order-1">
+                    <div class="font-mono text-violet-400 mb-6 flex items-center gap-2 h-6">
+                        <i data-lucide="terminal" class="w-4 h-4"></i>
+                        <span id="hero-tagline" class="typewriter-cursor"></span>
+                    </div>
+
+                    <div id="hero-content" class="transition-all duration-1000">
+                        <div class="mb-4 inline-block px-3 py-1 bg-violet-500/10 border border-violet-500/20 rounded text-[10px] font-mono text-violet-400 uppercase tracking-widest animate-pulse">
+                            Defending Digital Trust. Securing What Matters.
+                        </div>
+
+                        <h1 class="text-4xl md:text-6xl font-black text-white mb-8 leading-tight min-h-[120px]">
+                            <span id="heading-line-1" class="block h-14 md:h-20"></span>
+                            <span id="heading-line-2" class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-500 to-blue-500 block h-14 md:h-20"></span>
+                        </h1>
+
+                        <div id="hero-cta-group" class="opacity-0 translate-y-4 transition-all duration-700">
+                            <div class="p-4 glass-card border-l-2 border-l-violet-500 mb-10 max-w-2xl">
+                                <p class="text-sm text-slate-300 italic">
+                                    "I combine security operations expertise with audit-driven risk awareness to protect systems, improve controls, and support business resilience."
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#experience" class="px-8 py-4 bg-violet-600 hover:bg-violet-500 text-white font-bold rounded-lg transition-all flex items-center gap-2 group shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+                                    Explore My Experience
+                                    <i data-lucide="chevron-right" class="group-hover:translate-x-1 transition-transform w-5 h-5"></i>
+                                </a>
+                                <a href="https://msivananthan.github.io/" class="px-8 py-4 border border-white/10 hover:border-violet-500/50 hover:bg-white/5 rounded-lg font-bold transition-all text-white backdrop-blur-sm">
+                                    Professional Profile
+                                </a>
+                               
+
+                            </div>
+
+                            <!-- Social Uplink Portals -->
+                            <div class="mt-8 flex flex-wrap gap-6 items-center border-t border-white/5 pt-6">
+                                <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-violet-500 animate-ping"></span>
+                                    Uplink_Portals //
+                                </span>
+                                <div class="flex flex-wrap gap-3">
+                                    <a href="https://www.linkedin.com/in/sivananthanm/" target="_blank" class="px-3 py-2 bg-white/5 border border-white/10 hover:border-violet-500/50 hover:bg-violet-500/10 rounded-lg text-slate-300 hover:text-violet-400 transition-all flex items-center gap-2.5 text-xs font-mono group" title="LinkedIn Profile">
+                                        <svg class="w-4 h-4 text-violet-400 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                        </svg>
+                                        <span>LINKEDIN</span>
+                                    </a>
+                                    <a href="https://github.com/MSivananthan" target="_blank" class="px-3 py-2 bg-white/5 border border-white/10 hover:border-violet-500/50 hover:bg-violet-500/10 rounded-lg text-slate-300 hover:text-violet-400 transition-all flex items-center gap-2.5 text-xs font-mono group" title="GitHub Repository">
+                                        <svg class="w-4 h-4 text-violet-400 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                        </svg>
+                                        <span>GITHUB</span>
+                                    </a>
+                                    <a href="https://msivananthan.github.io/" class="px-3 py-2 bg-white/5 border border-white/10 hover:border-violet-500/50 hover:bg-violet-500/10 rounded-lg text-slate-300 hover:text-violet-400 transition-all flex items-center gap-2.5 text-xs font-mono group" title="Interactive Portfolio Workspace">
+                                        <svg class="w-4 h-4 text-violet-400 group-hover:text-white transition-all duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                        </svg>
+                                        <span>PORTFOLIO</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animated Circular Profile Photo Graphic -->
+                <div class="order-1 lg:order-2 flex justify-center items-center relative h-[350px] lg:h-[500px]">
+                    <div class="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] flex items-center justify-center group">
+                        <!-- Animated cyber rings -->
+                        <div class="absolute inset-[-10%] rounded-full border border-violet-500/20 border-dashed animate-spin-slow"></div>
+                        <div class="absolute inset-[-20%] rounded-full border-t border-b border-blue-500/20 animate-reverse-spin" style="animation-duration: 20s"></div>
+
+                        <!-- Glowing backdrop -->
+                        <div class="absolute inset-0 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-700"></div>
+
+                        <!-- Image Container -->
+                        <div class="relative w-full h-full rounded-full border border-violet-500/40 p-2 shadow-[0_0_50px_rgba(168,85,247,0.2)] animate-float bg-obsidian/50 backdrop-blur-sm z-10">
+                            <div class="w-full h-full rounded-full overflow-hidden relative">
+                                <img src="Image.png" alt="Sivananthan M." class="w-50 h-70 object-cover scale-105 group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://ui-avatars.com/api/?name=Sivananthan+M&background=020617&color=a855f7&size=512'">
+                                <!-- Cyberpunk color overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-tr from-violet-500/30 to-transparent mix-blend-overlay pointer-events-none"></div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Status Badge -->
+                        <div class="absolute bottom-6 right-2 z-20 glass-card px-4 py-2 rounded-full border-violet-500/30 shadow-[0_0_20px_rgba(168,85,247,0.4)] flex items-center gap-2">
+                            <span class="flex h-2.5 w-2.5 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                            </span>
+                            <span class="text-[10px] font-mono text-white tracking-widest">SECURE_UPLINK</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Me Section -->
+            <section id="about" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="user" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // BIOMETRIC_PROFILE"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="System Architect Persona"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-violet-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-4 flex justify-center">
+                        <div class="profile-frame group overflow-hidden">
+                            <div class="absolute inset-0 bg-violet-900/10 flex items-center justify-center z-10"></div>
+                            <!-- Fixed Image Tag Here -->
+                            <img src="Image.png" alt="Profile View" class="w-full h-full object-cover opacity-90 group-hover:opacity-40 transition-opacity relative z-0" onerror="this.src='https://ui-avatars.com/api/?name=Sivananthan+M&background=020617&color=a855f7&size=512'">
+                            
+                            <div class="absolute inset-0 pointer-events-none z-20">
+                                <div class="absolute top-0 left-0 w-full h-0.5 bg-violet-500/50 shadow-[0_0_15px_rgba(168,85,247,1)] animate-scan"></div>
+                            </div>
+                            <div class="absolute bottom-4 left-4 text-[10px] font-mono text-violet-400/70 z-30">
+                                ID: SVN_8821_M<br>
+                                CLEARANCE: LEVEL_05
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8 space-y-6">
+                        <div class="glass-card p-8">
+                            <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                                <span class="type-target" data-typewriter="Professional Narrative"></span> <i data-lucide="scroll-text" class="text-violet-400 w-5 h-5"></i>
+                            </h3>
+                            <p class="text-slate-400 leading-relaxed mb-6">
+                                I am <span class="text-violet-400 font-semibold">Sivananthan M.</span>, a results-oriented Cybersecurity professional with a unique trajectory from the front lines of Technical Operations to the high-stakes domain of Cyber Risk Consulting. My journey began in the trenches of Security Operation Centers (SOC), where I mastered the art of real-time threat detection and forensics.
+                            </p>
+                            <p class="text-slate-400 leading-relaxed mb-6">
+                                Recognizing that technical security often speaks a different language than business leadership, I pivoted into a <span class="text-blue-400 font-semibold">Strategic Consultant</span> role. Today, I specialize in translating complex telemetry into actionable risk metrics, helping organizations understand the financial and operational impact of their security posture.
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                                <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+                                    <h4 class="text-violet-400 font-mono text-xs uppercase tracking-widest mb-2">Technical Origin</h4>
+                                    <p class="text-sm text-slate-300">Deep-dive forensics, incident response, and custom detection engineering.</p>
+                                </div>
+                                <div class="bg-white/5 border border-white/10 rounded-lg p-4">
+                                    <h4 class="text-blue-400 font-mono text-xs uppercase tracking-widest mb-2">Strategic Pivot</h4>
+                                    <p class="text-sm text-slate-300">Risk quantization, GRC automation, and executive-level security advisory.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4">
+                            <div class="glass-card px-4 py-2 flex items-center gap-2 text-xs font-mono text-violet-300">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i> GLOBAL_REMOTE
+                            </div>
+                            <div class="glass-card px-4 py-2 flex items-center gap-2 text-xs font-mono text-violet-300">
+                                <i data-lucide="languages" class="w-4 h-4"></i> English / Technical_Forensics
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Timeline Section -->
+            <section id="experience" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="history" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // MISSION_HISTORY"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Professional Experience"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-blue-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="tl-container">
+                    <div class="main-timeline">
+                        <div class="timeline left">
+                            <div class="tl-card p-6 md:p-8">
+                                <div class="flex flex-col sm:flex-row justify-between items-start mb-6 gap-4">
+                                    <div>
+                                        <span class="inline-block text-[10px] font-mono text-violet-400 uppercase tracking-widest px-2 py-1 bg-violet-400/10 rounded-md mb-2">STRATEGIC_CONSULTING</span>
+                                        <h3 class="text-xl md:text-2xl font-bold text-white leading-tight">
+                                            <span class="type-target" data-typewriter="Cyber Risk Consultant Specialist"></span>
+                                        </h3>
+                                        <p class="text-blue-400 font-mono text-base">Price WaterHouse Cooper (PwC)</p>
+                                    </div>
+                                    <span class="text-[10px] bg-white/5 px-3 py-1.5 rounded-full text-slate-400 font-mono border border-white/5">2023 - Present</span>
+                                </div>
+                                <ul class="space-y-4">
+                                    <li class="flex gap-4 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
+                                        Dedicated Cybersecurity Advisory Specialist with experience in security monitoring, alert triage, incident analysis, risk management, and IT Audit activities. Skilled in SIEM, EDR, threat intelligence tools, and control validation to detect security events, assess risks, and strengthen governance processes.
+                                    </li>
+                                    <li class="flex gap-4 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
+                                        Experienced in log analysis, documentation, evidence collection, escalation handling, and ensuring compliance with security standards.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline right">
+                            <div class="tl-card p-6 md:p-8">
+                                <div class="flex flex-col sm:flex-row justify-between items-start mb-6 gap-4">
+                                    <div>
+                                        <span class="inline-block text-[10px] font-mono text-blue-400 uppercase tracking-widest px-2 py-1 bg-blue-400/10 rounded-md mb-2">TECHNICAL_OPERATIONS</span>
+                                        <h3 class="text-xl md:text-2xl font-bold text-white leading-tight">
+                                            <span class="type-target" data-typewriter="Python FullStack Developer"></span>
+                                        </h3>
+                                        <p class="text-violet-400 font-mono text-base">Infosys Springboard</p>
+                                    </div>
+                                    <span class="text-[10px] bg-white/5 px-3 py-1.5 rounded-full text-slate-400 font-mono border border-white/5">2021 - 2023</span>
+                                </div>
+                                <ul class="space-y-4">
+                                    <li class="flex gap-4 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                                        Worked as a Python Developer at Infosys Springboard, contributing to the Family Finance Management project. Developed Python-based modules for expense tracking, budget planning, and financial record management with a user-friendly interface.
+                                    </li>
+                                    <li class="flex gap-4 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                                        Gained hands-on experience in backend development, database integration, problem-solving, and building practical real-world applications.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Systems Section -->
+            <section id="systems" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // TECHNICAL_ECOSYSTEM"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="System Core Stack"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-violet-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                    <div class="lg:col-span-4">
+                        <div class="glass-card p-10">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                                <div>
+                                    <h4 class="text-xs font-mono text-violet-400 uppercase tracking-[0.2em] mb-8 border-b border-violet-500/20 pb-2">
+                                        <span class="type-target" data-typewriter="Frameworks"></span>
+                                    </h4>
+                                    <ul class="space-y-5">
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>NIST CSF</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>ISO 27001</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>SBOM/CBOM</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>CIS Benchmarks</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-mono text-blue-400 uppercase tracking-[0.2em] mb-8 border-b border-blue-500/20 pb-2">
+                                        <span class="type-target" data-typewriter="Cloud Infrastructure"></span>
+                                    </h4>
+                                    <ul class="space-y-5">
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>OCI Architect</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>AWS IAM</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Terraform</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Kubernetes Sec</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-mono text-fuchsia-400 uppercase tracking-[0.2em] mb-8 border-b border-fuchsia-500/20 pb-2">
+                                        <span class="type-target" data-typewriter="Defensive Ops"></span>
+                                    </h4>
+                                    <ul class="space-y-5">
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Cortex XDR</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Crowdstrike</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>IBM Qradar</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Wasuz</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-mono text-indigo-400 uppercase tracking-[0.2em] mb-8 border-b border-indigo-500/20 pb-2">
+                                        <span class="type-target" data-typewriter="Development"></span>
+                                    </h4>
+                                    <ul class="space-y-5">
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Python (SOAR)</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Java</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>Front-end</span></li>
+                                        <li class="flex items-center gap-3 text-white font-medium"><span>MySQL</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hand-on Work Experience -->
+            <section id="hands-on" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // HANDS_ON_CORE"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Hands-on Work Experience"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-emerald-500 mt-4 rounded-full"></div>
+                </div>
+
+                <!-- SOC DOMAIN -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
+                    <div class="lg:col-span-12">
+                        <div class="glass-card p-8 border-l-4 border-l-emerald-500">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                                <h3 class="text-2xl font-bold text-white">
+                                    <span class="type-target" data-typewriter="SOC Domain Expertise | Year Experience"></span>
+                                </h3>
+                                <div class="px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 font-mono text-xs uppercase tracking-widest shrink-0">
+                                    Status: Active_Ops
+                                </div>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed text-lg italic">
+                                Cybersecurity professional with 1 year of hands-on experience in Security Operations Center (SOC) environments, specializing in threat monitoring, incident detection, log analysis, and security operations using leading SIEM, EDR, and security platforms. Skilled in identifying suspicious activities, investigating alerts, and supporting incident response processes to strengthen organizational security posture.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="activity" class="text-emerald-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Security Monitoring</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Continuous monitoring of security alerts, events, and suspicious activities across enterprise environments.</p>
+                        </div>
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="search" class="text-blue-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Threat Analysis</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Triage, validate, and analyze alerts to identify potential threats, false positives, and security incidents.</p>
+                        </div>
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="database" class="text-fuchsia-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Log Analysis</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Review and correlate logs from multiple sources to detect anomalies and malicious behavior.</p>
+                        </div>
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="alert-triangle" class="text-orange-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Incident Response</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Assist in containment, escalation, documentation, and remediation activities.</p>
+                        </div>
+                        <div class="glass-card p-6 md:col-span-2 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="globe" class="text-violet-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Threat Intelligence & Risk Monitoring</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Monitoring emerging threats, vulnerabilities, and digital risks affecting organizations.</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="glass-card p-8 h-full">
+                            <h4 class="text-xs font-mono text-emerald-400 uppercase tracking-[0.2em] mb-8 border-b border-emerald-500/20 pb-2 flex items-center gap-2">
+                                <i data-lucide="wrench" class="w-4 h-4"></i> SOC Technologies
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-emerald-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">Cortex XDR & XSIAM</div><div class="text-[10px] text-slate-500 font-mono">Palo Alto Networks</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">IBM QRadar</div><div class="text-[10px] text-slate-500 font-mono">SIEM Monitoring</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-orange-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">CrowdStrike Falcon</div><div class="text-[10px] text-slate-500 font-mono">Threat Hunting</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-violet-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">CloudSEK</div><div class="text-[10px] text-slate-500 font-mono">External Threat Intel</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-fuchsia-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">Wazuh</div><div class="text-[10px] text-slate-500 font-mono">Security Analytics</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IT AUDIT DOMAIN -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div class="lg:col-span-12">
+                        <div class="glass-card p-8 border-l-4 border-l-blue-500">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                                <h3 class="text-2xl font-bold text-white">
+                                    <span class="type-target" data-typewriter="IT Audit Domain Expertise | Year of Experience in IT Audit & Risk Compliance"></span>
+                                </h3>
+                                <div class="px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 font-mono text-xs uppercase tracking-widest shrink-0">
+                                    Status: Governance_Ready
+                                </div>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed text-lg italic">
+                                Dedicated IT Audit professional with experience in reviewing IT controls, supporting compliance assessments, validating governance processes, and strengthening risk management practices. Skilled in control testing, evidence validation, audit documentation, and collaborating with teams to improve internal controls and regulatory readiness.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="clipboard-check" class="text-blue-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">ITGC Testing</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Reviewed controls related to access, password policies, backups, and system operations.</p>
+                        </div>
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="user-cog" class="text-indigo-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Access Management Review</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Validated user accounts, privileged access, and inactive account removal.</p>
+                        </div>
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="refresh-cw" class="text-violet-400 h-5 h-5"></i>
+                                <h4 class="font-bold text-white">Change Management</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Verified approvals, testing, and documentation for system changes.</p>
+                        </div>
+                        <div class="glass-card p-6 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="file-text" class="text-cyan-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Evidence & Documentation</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Collected logs, screenshots, approvals, and maintained audit workpapers.</p>
+                        </div>
+                        <div class="glass-card p-6 md:col-span-2 group">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="shield-check" class="text-blue-400 w-5 h-5"></i>
+                                <h4 class="font-bold text-white">Control Gap Analysis & Remediation</h4>
+                            </div>
+                            <p class="text-sm text-slate-400">Identified gaps, tracked findings, and supported closure actions to ensure continuous compliance.</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="glass-card p-8 h-full">
+                            <h4 class="text-xs font-mono text-blue-400 uppercase tracking-[0.2em] mb-8 border-b border-blue-500/20 pb-2 flex items-center gap-2">
+                                <i data-lucide="briefcase" class="w-4 h-4"></i> Audit Technologies
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-emerald-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">Microsoft Excel</div><div class="text-[10px] text-slate-500 font-mono">Data Analysis & trackers</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">ServiceNow</div><div class="text-[10px] text-slate-500 font-mono">Incident & Change Review</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-orange-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">JIRA</div><div class="text-[10px] text-slate-500 font-mono">Issue Tracking</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-indigo-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">IBM QRadar</div><div class="text-[10px] text-slate-500 font-mono">Audit Evidence Support</div></div>
+                                </div>
+                                <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors group">
+                                    <div class="w-2 h-2 rounded-full bg-cyan-500 mt-2"></div>
+                                    <div><div class="text-white font-bold text-sm">Power BI</div><div class="text-[10px] text-slate-500 font-mono">Audit Analytics</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Impact Metrics Section -->
+            <section id="impact" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // METRIC_TELEMETRY"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Security Impact Metrics"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-violet-500 mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Operations Impact Grid -->
+                <div class="mb-20">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-8 flex items-center gap-2">
+                        <i data-lucide="activity" class="text-violet-400 w-5 h-5"></i>
+                        <span class="type-target" data-typewriter="Security Operations Impact"></span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Threat Monitoring -->
+                        <div class="glass-card p-8 border-l-4 border-l-violet-500 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="p-3 bg-violet-500/10 rounded-xl text-violet-400">
+                                        <i data-lucide="eye" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-white leading-tight">Threat Monitoring & Alert Handling</h4>
+                                </div>
+                                <ul class="space-y-4">
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
+                                        <span>Monitored and analyzed <strong>5000+ daily</strong> security events across enterprise environments using SIEM and EDR platforms.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
+                                        <span>Performed alert triage and false positive validation to improve SOC operational efficiency and reduce analyst fatigue.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
+                                        <span>Supported detection and investigation of phishing attempts, malware infections, suspicious authentication events, and endpoint anomalies.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></div>
+                                        <span>Assisted in prioritizing security incidents based on severity, business impact, and threat intelligence correlation.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Incident Investigation -->
+                        <div class="glass-card p-8 border-l-4 border-l-blue-500 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="p-3 bg-blue-500/10 rounded-xl text-blue-400">
+                                        <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-white leading-tight">Incident Investigation & Response</h4>
+                                </div>
+                                <ul class="space-y-4">
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                                        <span>Participated in incident response activities including alert analysis, evidence collection, documentation, and escalation handling.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                                        <span>Conducted log analysis across multiple security platforms to identify indicators of compromise (IOCs) and suspicious behavior.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                                        <span>Supported containment and remediation coordination for endpoint and account compromise scenarios.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- IT Audit & Governance -->
+                        <div class="glass-card p-8 border-l-4 border-l-fuchsia-500 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="p-3 bg-fuchsia-500/10 rounded-xl text-fuchsia-400">
+                                        <i data-lucide="file-check-2" class="w-6 h-6"></i>
+                                    </div>
+                                    <h4 class="text-lg font-bold text-white leading-tight">IT Audit & Governance Contributions</h4>
+                                </div>
+                                <ul class="space-y-4">
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-fuchsia-500 shrink-0 shadow-[0_0_8px_rgba(244,114,182,0.8)]"></div>
+                                        <span>Assisted in IT General Controls (ITGC) reviews covering access management, password controls, change management, and backup validation.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-fuchsia-500 shrink-0 shadow-[0_0_8px_rgba(244,114,182,0.8)]"></div>
+                                        <span>Improved audit evidence tracking and documentation consistency using structured review processes.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-fuchsia-500 shrink-0 shadow-[0_0_8px_rgba(244,114,182,0.8)]"></div>
+                                        <span>Supported governance and compliance activities aligned with ISO 27001, NIST CSF, and internal audit standards.</span>
+                                    </li>
+                                    <li class="flex gap-3 text-sm leading-relaxed text-slate-400">
+                                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-fuchsia-500 shrink-0 shadow-[0_0_8px_rgba(244,114,182,0.8)]"></div>
+                                        <span>Collaborated with cross-functional teams to validate control effectiveness and remediation activities.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Incident Response Snapshots -->
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-8 flex items-center gap-2">
+                        <i data-lucide="folder-git-2" class="text-violet-400 w-5 h-5"></i>
+                        <span class="type-target" data-typewriter="Incident Response"></span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Snapshot 1 -->
+                        <div class="glass-card p-6 flex flex-col justify-between h-full relative">
+                            <div class="absolute top-3 right-4 font-mono text-[9px] text-violet-400/50">CASE_REF: IR-881</div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                                    <h4 class="text-lg font-bold text-white">
+                                        <span class="type-target" data-typewriter="Phishing Email Investigation"></span>
+                                    </h4>
+                                </div>
+
+                                <!-- Situation -->
+                                <div class="mb-4 bg-white/5 border border-white/5 rounded-lg p-3">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Situation</div>
+                                    <p class="text-sm text-slate-300">A suspicious email containing credential harvesting links was reported by an employee.</p>
+                                </div>
+
+                                <!-- Tools Used -->
+                                <div class="mb-4">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Tools Demanded</div>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Microsoft Defender</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">QRadar SIEM</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">VirusTotal</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Threat Intel</span>
+                                    </div>
+                                </div>
+
+                                <!-- Actions Taken -->
+                                <div class="mb-6">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Counter-Strategy Action Logs</div>
+                                    <ul class="space-y-2 text-xs text-slate-400">
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[01]</span>
+                                            <span>Analyzed email headers and sender reputation.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[02]</span>
+                                            <span>Verified malicious URLs using sandbox and threat intelligence tools.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[03]</span>
+                                            <span>Checked whether other users received similar emails.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[04]</span>
+                                            <span>Escalated findings and supported containment actions.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Outcome -->
+                            <div class="bg-emerald-500/5 border-l-2 border-emerald-500 p-3 rounded-r-lg">
+                                <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-1">Outcome</div>
+                                <p class="text-xs text-slate-300">Potential credential compromise risk was mitigated before user interaction, reducing exposure to phishing attacks.</p>
+                            </div>
+                        </div>
+
+                        <!-- Snapshot 2 -->
+                        <div class="glass-card p-6 flex flex-col justify-between h-full relative">
+                            <div class="absolute top-3 right-4 font-mono text-[9px] text-violet-400/50">CASE_REF: IR-882</div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                                    <h4 class="text-lg font-bold text-white">
+                                        <span class="type-target" data-typewriter="Suspicious Login Detection"></span>
+                                    </h4>
+                                </div>
+
+                                <!-- Situation -->
+                                <div class="mb-4 bg-white/5 border border-white/5 rounded-lg p-3">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Situation</div>
+                                    <p class="text-sm text-slate-300">Multiple failed login attempts followed by successful authentication from an unusual geographic location were identified.</p>
+                                </div>
+
+                                <!-- Tools Used -->
+                                <div class="mb-4">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Tools Demanded</div>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Splunk</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Azure AD Logs</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">QRadar</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">CrowdStrike Falcon</span>
+                                    </div>
+                                </div>
+
+                                <!-- Actions Taken -->
+                                <div class="mb-6">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Counter-Strategy Action Logs</div>
+                                    <ul class="space-y-2 text-xs text-slate-400">
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[01]</span>
+                                            <span>Correlated authentication logs and endpoint activity.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[02]</span>
+                                            <span>Verified user behavior patterns and login timelines.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[03]</span>
+                                            <span>Escalated suspicious activity for password reset and account validation.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Outcome -->
+                            <div class="bg-emerald-500/5 border-l-2 border-emerald-500 p-3 rounded-r-lg">
+                                <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-1">Outcome</div>
+                                <p class="text-xs text-slate-300">Prevented possible account takeover and strengthened monitoring for abnormal authentication patterns.</p>
+                            </div>
+                        </div>
+
+                        <!-- Snapshot 3 -->
+                        <div class="glass-card p-6 flex flex-col justify-between h-full relative">
+                            <div class="absolute top-3 right-4 font-mono text-[9px] text-violet-400/50">CASE_REF: IR-883</div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                                    <h4 class="text-lg font-bold text-white">
+                                        <span class="type-target" data-typewriter="Malware Alert Triage"></span>
+                                    </h4>
+                                </div>
+
+                                <!-- Situation -->
+                                <div class="mb-4 bg-white/5 border border-white/5 rounded-lg p-3">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Situation</div>
+                                    <p class="text-sm text-slate-300">Endpoint detection platform generated malware execution alerts on a corporate workstation.</p>
+                                </div>
+
+                                <!-- Tools Used -->
+                                <div class="mb-4">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Tools Demanded</div>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Cortex XDR</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">CrowdStrike Falcon</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Windows Event Logs</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">VirusTotal</span>
+                                    </div>
+                                </div>
+
+                                <!-- Actions Taken -->
+                                <div class="mb-6">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Counter-Strategy Action Logs</div>
+                                    <ul class="space-y-2 text-xs text-slate-400">
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[01]</span>
+                                            <span>Validated file hash reputation.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[02]</span>
+                                            <span>Reviewed endpoint process execution behavior.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[03]</span>
+                                            <span>Investigated parent-child process relationships.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[04]</span>
+                                            <span>Escalated confirmed suspicious activity for containment.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Outcome -->
+                            <div class="bg-emerald-500/5 border-l-2 border-emerald-500 p-3 rounded-r-lg">
+                                <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-1">Outcome</div>
+                                <p class="text-xs text-slate-300">Reduced response time for malware validation and improved endpoint visibility during investigations.</p>
+                            </div>
+                        </div>
+
+                        <!-- Snapshot 4 -->
+                        <div class="glass-card p-6 flex flex-col justify-between h-full relative">
+                            <div class="absolute top-3 right-4 font-mono text-[9px] text-violet-400/50">CASE_REF: IR-884</div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                                    <h4 class="text-lg font-bold text-white">
+                                        <span class="type-target" data-typewriter="Privileged Access Review"></span>
+                                    </h4>
+                                </div>
+
+                                <!-- Situation -->
+                                <div class="mb-4 bg-white/5 border border-white/5 rounded-lg p-3">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Situation</div>
+                                    <p class="text-sm text-slate-300">Audit review identified inactive privileged accounts within enterprise systems.</p>
+                                </div>
+
+                                <!-- Tools Used -->
+                                <div class="mb-4">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Tools Demanded</div>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">ServiceNow</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Active Directory</span>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Excel Audit Tracker</span>
+                                    </div>
+                                </div>
+
+                                <!-- Actions Taken -->
+                                <div class="mb-6">
+                                    <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Counter-Strategy Action Logs</div>
+                                    <ul class="space-y-2 text-xs text-slate-400">
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[01]</span>
+                                            <span>Reviewed access listings and privileged account ownership.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[02]</span>
+                                            <span>Validated account activity and approval documentation.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="font-mono text-violet-400">[03]</span>
+                                            <span>Coordinated with stakeholders for remediation actions.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Outcome -->
+                            <div class="bg-emerald-500/5 border-l-2 border-emerald-500 p-3 rounded-r-lg">
+                                <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-1">Outcome</div>
+                                <p class="text-xs text-slate-300">Strengthened access governance and reduced risk of unauthorized privileged access.</p>
+                            </div>
+                        </div>
+
+                        <!-- Snapshot 5 -->
+                        <div class="glass-card p-6 flex flex-col justify-between h-full relative md:col-span-2">
+                            <div class="absolute top-3 right-4 font-mono text-[9px] text-violet-400/50">CASE_REF: IR-885</div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                                    <h4 class="text-lg font-bold text-white">
+                                        <span class="type-target" data-typewriter="VPN Anomaly Investigation"></span>
+                                    </h4>
+                                </div>
+
+                                <!-- Situation layout split -->
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                                    <div class="lg:col-span-4 bg-white/5 border border-white/5 rounded-lg p-3">
+                                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-1">Situation</div>
+                                        <p class="text-sm text-slate-300">Unusual VPN access outside standard business hours triggered a security alert.</p>
+                                    </div>
+
+                                    <!-- Tools Used -->
+                                    <div class="lg:col-span-4">
+                                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Tools Demanded</div>
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">SIEM Dashboard</span>
+                                            <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">VPN Logs</span>
+                                            <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">QRadar</span>
+                                            <span class="text-[10px] font-mono px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300">Threat Intel Sources</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Actions Taken -->
+                                    <div class="lg:col-span-4">
+                                        <div class="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Counter-Strategy Action Logs</div>
+                                        <ul class="space-y-2 text-xs text-slate-400">
+                                            <li class="flex items-start gap-2">
+                                                <span class="font-mono text-violet-400">[01]</span>
+                                                <span>Correlated VPN activity with endpoint and authentication logs.</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="font-mono text-violet-400">[02]</span>
+                                                <span>Reviews source IP reputation and geolocation.</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="font-mono text-violet-400">[03]</span>
+                                                <span>Validated business justification for remote access activity.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Outcome -->
+                            <div class="bg-emerald-500/5 border-l-2 border-emerald-500 p-3 rounded-r-lg mt-6">
+                                <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-1">Outcome</div>
+                                <p class="text-xs text-slate-300">Improved visibility into remote access anomalies and supported proactive threat monitoring.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Labs & Automation Section -->
+            <section id="labs" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="binary" class="w-6 h-6 animate-pulse"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // LABS_AND_AUTOMATION"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Security Labs & Automation"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-emerald-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Python-Based Security Automation Projects -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="glass-card p-8 border-l-4 border-l-emerald-500">
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                                <i data-lucide="code-2" class="text-emerald-400 w-5 h-5"></i>
+                                <span class="type-target" data-typewriter="Python Security Automation"></span>
+                            </h3>
+                            <div class="space-y-6">
+                                <!-- IOC Extractor Automation -->
+                                <div class="p-4 bg-white/5 border border-white/5 hover:border-emerald-500/20 rounded-lg transition-colors group">
+                                    <div class="flex items-start justify-between gap-4 mb-2">
+                                        <h4 class="font-bold text-white group-hover:text-emerald-400 transition-colors flex items-center gap-2 text-base">
+                                            <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i> IOC Extractor Automation
+                                        </h4>
+                                        <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">PYTHON_SOAR</span>
+                                    </div>
+                                    <p class="text-sm text-slate-300">Developed Python scripts to extract Indicators of Compromise (IOCs) including IP addresses, domains, hashes, and URLs from security logs and incident reports.</p>
+                                </div>
+
+                                <!-- Log Parser Utility -->
+                                <div class="p-4 bg-white/5 border border-white/5 hover:border-emerald-500/20 rounded-lg transition-colors group">
+                                    <div class="flex items-start justify-between gap-4 mb-2">
+                                        <h4 class="font-bold text-white group-hover:text-emerald-400 transition-colors flex items-center gap-2 text-base">
+                                            <i data-lucide="search" class="w-4 h-4 text-emerald-400"></i> Log Parser Utility
+                                        </h4>
+                                        <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">FORENSICS</span>
+                                    </div>
+                                    <p class="text-sm text-slate-300">Built automated log parsing scripts for analyzing Windows event logs and identifying suspicious authentication patterns.</p>
+                                </div>
+
+                                <!-- Threat Intelligence Integration -->
+                                <div class="p-4 bg-white/5 border border-white/5 hover:border-emerald-500/20 rounded-lg transition-colors group">
+                                    <div class="flex items-start justify-between gap-4 mb-2">
+                                        <h4 class="font-bold text-white group-hover:text-emerald-400 transition-colors flex items-center gap-2 text-base">
+                                            <i data-lucide="share-2" class="w-4 h-4 text-emerald-400"></i> Threat Intelligence Integration
+                                        </h4>
+                                        <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">API_AUTOMATION</span>
+                                    </div>
+                                    <p class="text-sm text-slate-300">Created lightweight automation workflows to validate suspicious IPs and hashes using external threat intelligence feeds.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flask & Wazuh Labs -->
+                    <div class="lg:col-span-5 flex flex-col gap-6">
+                        <!-- Flask-Based Security Applications -->
+                        <div class="glass-card p-8 border-l-4 border-l-blue-500 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="p-3 bg-blue-500/10 rounded-xl text-blue-400">
+                                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <h3 class="text-lg font-bold text-white leading-tight">
+                                            <span class="type-target" data-typewriter="Flask Security Apps"></span>
+                                        </h3>
+                                        <span class="text-[9px] text-blue-500 font-mono">FRAMEWORKS // SECURE_DEV</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                                    Developed secure Flask applications implementing advanced authentication, session management, security header enforcement, and cryptographic activity logging concepts to enforce secure coding practices.
+                                </p>
+                            </div>
+                            <div class="border-t border-white/5 pt-4 flex flex-wrap gap-2">
+                                <span class="text-[9px] font-mono px-2 py-1 bg-slate-900 border border-white/5 rounded text-blue-300">Secure Sessions</span>
+                                <span class="text-[9px] font-mono px-2 py-1 bg-slate-900 border border-white/5 rounded text-blue-300">Auth Systems</span>
+                                <span class="text-[9px] font-mono px-2 py-1 bg-slate-900 border border-white/5 rounded text-blue-300">Flask Security</span>
+                            </div>
+                        </div>
+
+                        <!-- Wazuh Security Monitoring Lab -->
+                        <div class="glass-card p-8 border-l-4 border-l-fuchsia-500 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-3 mb-6">
+                                    <div class="p-3 bg-fuchsia-500/10 rounded-xl text-fuchsia-400">
+                                        <i data-lucide="eye" class="w-6 h-6 animate-pulse"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <h3 class="text-lg font-bold text-white leading-tight">
+                                            <span class="type-target" data-typewriter="Wazuh Monitoring Lab"></span>
+                                        </h3>
+                                        <span class="text-[9px] text-fuchsia-500 font-mono">XDR // SECOPS_LAB</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                                    Configured, deployed, and tested a Wazuh-based monitoring environment designed to achieve deep endpoint visibility, aggregate complex audit logs, execute correlation rules, and generate structured alert analytics.
+                                </p>
+                            </div>
+                            <div class="border-t border-white/5 pt-4 flex flex-wrap gap-2">
+                                <span class="text-[9px] font-mono px-2 py-1 bg-slate-900 border border-white/5 rounded text-fuchsia-300">Wazuh Agent</span>
+                                <span class="text-[9px] font-mono px-2 py-1 bg-slate-900 border border-white/5 rounded text-fuchsia-300">Rule Correlation</span>
+                                <span class="text-[9px] font-mono px-2 py-1 bg-slate-900 border border-white/5 rounded text-fuchsia-300">Alert Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Credentials Section -->
+            <section id="credentials" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // CERTIFICATION_LOGS"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="System Upgrades & Credentials"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-blue-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-violet-500/10 rounded-full text-violet-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="cloud" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">OCI Solutions Architect Associate</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: ORCL-9921-S</p>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">VERIFIED_EXPERT</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-violet-500/10 rounded-full text-violet-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="cloud" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Cortex XDR Analyst Engineer</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: CXDR-9967-S</p>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">VERIFIED_EXPERT</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-violet-500/10 rounded-full text-violet-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="cloud" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Paloalto XSIAM Analyst</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: PAXA-9921-S</p>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">VERIFIED_EXPERT</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-blue-500/10 rounded-full text-blue-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="zap" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Generative AI Professional</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: AI-1102-GEN</p>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">ADVANCED_STACK</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-fuchsia-500/10 rounded-full text-fuchsia-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Certified SOC Analyst (CSA)</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: EC-8821-SOC</p>
+                        <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded-full border border-blue-500/20">ACTIVE_DEFENSE</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-indigo-500/10 rounded-full text-indigo-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="user-check" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Certified in Cybersecurity (CC)</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: ISC2-CC-8891</p>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">VERIFIED_ISC2</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-cyan-500/10 rounded-full text-cyan-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="file-check-2" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">ISO 27001 Lead Implementer</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: ISO-27001-LI</p>
+                        <span class="text-[10px] font-mono text-violet-400 bg-violet-500/10 px-2.5 py-1 rounded-full border border-violet-500/20">GRC_SPECIALIST</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-pink-500/10 rounded-full text-pink-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="binary" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Certified Ethical Hacker (CEH)</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: CEH-EC-321</p>
+                        <span class="text-[10px] font-mono text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-full border border-pink-500/20">OFFENSIVE_INTEL</span>
+                    </div>
+                    <div class="glass-card p-6 flex flex-col items-center text-center group">
+                        <div class="p-4 bg-emerald-500/10 rounded-full text-emerald-400 mb-4 group-hover:scale-110 transition-transform"><i data-lucide="activity" class="w-8 h-8"></i></div>
+                        <h3 class="text-lg font-bold text-white mb-2">Cybersecurity Analyst Simulation</h3>
+                        <p class="text-xs text-slate-500 font-mono mb-4 uppercase tracking-tighter">ID: SIM-DEF-440</p>
+                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">PRACTICAL_READY</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Vault -->
+            <section id="vault" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="archive" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // PROJECT_VAULT"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Technical Proof of Work"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-fuchsia-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 group cursor-pointer flex flex-col h-full">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-violet-400 to-transparent -translate-y-full group-hover:animate-scan"></div>
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="p-4 bg-white/5 rounded-2xl text-violet-400 group-hover:bg-violet-500/10 transition-all"><i data-lucide="cpu" class="w-7 h-7"></i></div>
+                            <span class="font-mono text-[10px] text-slate-500 tracking-widest">PROJ-ALPHA</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-violet-400 transition-colors">EduNexus AI</h3>
+                        <p class="text-sm text-slate-400 mb-8 leading-relaxed flex-grow">A next-gen Generative AI platform simulating personalized social engineering attacks to stress-test human-centric security layers.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] font-mono px-2.5 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">LLM</span>
+                            <span class="text-[10px] font-mono px-2.5 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Flask</span>
+                        </div>
+                    </div>
+                    <div class="glass-card p-8 group cursor-pointer flex flex-col h-full">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent -translate-y-full group-hover:animate-scan"></div>
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="p-4 bg-white/5 rounded-2xl text-blue-400 group-hover:bg-blue-500/10 transition-all"><i data-lucide="shield-check" class="w-7 h-7"></i></div>
+                            <span class="font-mono text-[10px] text-slate-500 tracking-widest">PROJ-BETA</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">Cortex XSIAM </h3>
+                        <p class="text-sm text-slate-400 mb-8 leading-relaxed flex-grow">AI-driven security operations platform that unifies SIEM, automation, and extended detection and response (XDR) to detect, investigate, and respond to threats in real time.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] font-mono px-2.5 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">XDR</span>
+                            <span class="text-[10px] font-mono px-2.5 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Agentic AI</span>
+                        </div>
+                    </div>
+                    <div class="glass-card p-8 group cursor-pointer flex flex-col h-full">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-fuchsia-400 to-transparent -translate-y-full group-hover:animate-scan"></div>
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="p-4 bg-white/5 rounded-2xl text-fuchsia-400 group-hover:bg-fuchsia-500/10 transition-all"><i data-lucide="eye" class="w-7 h-7"></i></div>
+                            <span class="font-mono text-[10px] text-slate-500 tracking-widest">PROJ-GAMMA</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-fuchsia-400 transition-colors">Vulnerability Intel Engine</h3>
+                        <p class="text-sm text-slate-400 mb-8 leading-relaxed flex-grow">A high-performance Go-based engine that scrapes Dark Web signals to prioritize patch management based on active exploitation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] font-mono px-2.5 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Go</span>
+                            <span class="text-[10px] font-mono px-2.5 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Redis</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Foundation Section -->
+            <section id="academic" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // EDUCATION_LEDGER"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Academic Foundation"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-violet-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-8">
+                    <!-- BE CSE -->
+                    <div class="glass-card p-8 border-l-4 border-l-violet-500">
+                        <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
+                            <div>
+                                <span class="inline-block text-[10px] font-mono text-violet-400 uppercase tracking-widest px-2.5 py-1 bg-violet-500/10 border border-violet-500/20 rounded mb-2">University Degree</span>
+                                <h3 class="text-2xl font-bold text-white leading-tight">Bachelor of Engineering in Computer Science Engineering</h3>
+                                <p class="text-slate-400 text-sm font-medium mt-1">Dhaanish Ahmed College of Engineering, Chennai</p>
+                            </div>
+                            <div class="flex flex-col md:items-end gap-2 shrink-0">
+                                <span class="text-[10px] bg-white/5 px-3 py-1.5 rounded text-slate-400 font-mono border border-white/5">2021 – 2025</span>
+                                <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 font-semibold">CGPA: 8.9</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4 mb-8">
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Built strong foundational and practical knowledge in software development, cybersecurity concepts, and cloud technologies. Participated in technical projects focused on web applications, automation, and security-oriented solutions.
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-6">
+                            <h4 class="text-xs font-mono text-violet-400 uppercase tracking-wider mb-3">Relevant Coursework</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] font-mono px-3 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Data Structures & Algorithms</span>
+                                <span class="text-[10px] font-mono px-3 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Database Management Systems</span>
+                                <span class="text-[10px] font-mono px-3 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Web Development</span>
+                                <span class="text-[10px] font-mono px-3 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Cloud Computing</span>
+                                <span class="text-[10px] font-mono px-3 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Computer Networks</span>
+                                <span class="text-[10px] font-mono px-3 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Operating Systems</span>
+                                <span class="text-[10px] font-mono px-3 py-1 bg-slate-900 border border-white/5 rounded text-slate-300">Software Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Higher Secondary -->
+                        <div class="glass-card p-6 border-l-4 border-l-blue-500 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start gap-4 mb-6">
+                                    <div>
+                                        <span class="inline-block text-[10px] font-mono text-blue-400 uppercase tracking-widest px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded mb-2">Grade 12 / HSE</span>
+                                        <h3 class="text-xl font-bold text-white leading-tight">Higher Secondary School</h3>
+                                        <p class="text-slate-400 text-xs mt-1">Sri Vijay Vidyalaya Matric Hr. Sec. School, Dharmapuri</p>
+                                    </div>
+                                    <div class="flex flex-col items-end gap-1.5 shrink-0">
+                                        <span class="text-[9px] bg-white/5 px-2 py-1 rounded text-slate-400 font-mono">2020 – 2021</span>
+                                        <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20 font-semibold">88.3%</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-300 text-xs leading-relaxed mb-6">
+                                    Specialized in the Bio-Maths stream, establishing highly developed analytical, algorithmic, and mathematical problem-solving skills.
+                                </p>
+                            </div>
+                            <div class="border-t border-white/5 pt-4">
+                                <h4 class="text-[10px] font-mono text-blue-400 uppercase tracking-wider mb-2">Coursework Focus</h4>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Mathematics</span>
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Biology</span>
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Physics</span>
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Chemistry</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary -->
+                        <div class="glass-card p-6 border-l-4 border-l-fuchsia-500 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start gap-4 mb-6">
+                                    <div>
+                                        <span class="inline-block text-[10px] font-mono text-fuchsia-400 uppercase tracking-widest px-2 py-0.5 bg-fuchsia-500/10 border border-fuchsia-500/20 rounded mb-2">Grade 10 / SSLC</span>
+                                        <h3 class="text-xl font-bold text-white leading-tight">Secondary School</h3>
+                                        <p class="text-slate-400 text-xs mt-1">Vidyaa Vikas Matric Hr. Sec. School, Namakkal</p>
+                                    </div>
+                                    <div class="flex flex-col items-end gap-1.5 shrink-0">
+                                        <span class="text-[9px] bg-white/5 px-2 py-1 rounded text-slate-400 font-mono">2018 – 2019</span>
+                                        <span class="text-[10px] font-mono text-fuchsia-400 bg-fuchsia-500/10 px-2 py-0.5 rounded border border-fuchsia-500/20 font-semibold">86.6%</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-300 text-xs leading-relaxed mb-6">
+                                    Developed a robust, comprehensive academic foundation in physical sciences, humanities, and fundamental mathematics.
+                                </p>
+                            </div>
+                            <div class="border-t border-white/5 pt-4">
+                                <h4 class="text-[10px] font-mono text-fuchsia-400 uppercase tracking-wider mb-2">Coursework Focus</h4>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Science</span>
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Humanities</span>
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Mathematics</span>
+                                    <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">Social Science</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Current Journey Section -->
+            <section id="journey" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="compass" class="w-6 h-6 animate-spin-slow"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // MISSION_DIAGNOSTICS"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Current Journey"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-emerald-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Currently Working On -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card p-8 h-full border-l-4 border-l-emerald-500 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                                    <i data-lucide="zap" class="text-emerald-400 w-5 h-5"></i> Currently Working On
+                                </h3>
+                                <ul class="space-y-4">
+                                    <li class="p-3 bg-white/5 border border-white/5 rounded-lg flex items-center gap-3 group">
+                                        <span class="font-mono text-[9px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded shrink-0">RUNNING</span>
+                                        <span class="text-sm text-slate-300">Building SOC automation scripts using Python</span>
+                                    </li>
+                                    <li class="p-3 bg-white/5 border border-white/5 rounded-lg flex items-center gap-3 group">
+                                        <span class="font-mono text-[9px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded shrink-0">EXPLORING</span>
+                                        <span class="text-sm text-slate-300">Exploring AI-driven cyber defense & threat intel</span>
+                                    </li>
+                                    <li class="p-3 bg-white/5 border border-white/5 rounded-lg flex items-center gap-3 group">
+                                        <span class="font-mono text-[9px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded shrink-0">ONLINE</span>
+                                        <span class="text-sm text-slate-300">Practicing malware analysis fundamentals</span>
+                                    </li>
+                                    <li class="p-3 bg-white/5 border border-white/5 rounded-lg flex items-center gap-3 group">
+                                        <span class="font-mono text-[9px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded shrink-0">TUNING</span>
+                                        <span class="text-sm text-slate-300">Enhancing SIEM correlation & detection engineering</span>
+                                    </li>
+                                    <li class="p-3 bg-white/5 border border-white/5 rounded-lg flex items-center gap-3 group">
+                                        <span class="font-mono text-[9px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded shrink-0">PREPPING</span>
+                                        <span class="text-sm text-slate-300">Preparing for advanced security certs</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-6 p-4 bg-emerald-500/5 border border-emerald-500/20 rounded-lg text-xs font-mono text-emerald-400/90 text-center">
+                                 Developing hands-on blue team security labs
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Currently Learning On -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card p-8 h-full border-l-4 border-l-blue-500">
+                            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                                <i data-lucide="book-open" class="text-blue-400 w-5 h-5"></i> Currently Learning On
+                            </h3>
+                            <div class="space-y-6">
+                                <!-- DPDPA -->
+                                <div class="flex gap-4">
+                                    <div class="p-2 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 h-10 w-10 flex items-center justify-center shrink-0">
+                                        <i data-lucide="fingerprint" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-base">Digital Personal Data Protection (DPDPA 2023)</h4>
+                                        <p class="text-slate-400 text-xs leading-relaxed mt-1">
+                                            Studying data privacy principles, compliance architectures, consent validation models, user rights, and advanced, secure handling strategies for personal information.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- GRC Privacy -->
+                                <div class="flex gap-4">
+                                    <div class="p-2 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 h-10 w-10 flex items-center justify-center shrink-0">
+                                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-base">GRC & Privacy Governance</h4>
+                                        <p class="text-slate-400 text-xs leading-relaxed mt-1">
+                                            Exploring institutional GRC, policy integration, compliance reporting, incident response alignment, and modern enterprise frameworks.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- CEH VAPT -->
+                                <div class="flex gap-4">
+                                    <div class="p-2 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 h-10 w-10 flex items-center justify-center shrink-0">
+                                        <i data-lucide="skull" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-base">EC-Council Certified Ethical Hacker (CEH)</h4>
+                                        <p class="text-slate-400 text-xs leading-relaxed mt-1">
+                                            Engaged with CEH curriculum objectives, prioritizing vulnerability validation metrics and structured penetration testing workflows.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Methodologies -->
+                                <div class="flex gap-4">
+                                    <div class="p-2 bg-blue-500/10 border border-blue-500/20 rounded text-blue-400 h-10 w-10 flex items-center justify-center shrink-0">
+                                        <i data-lucide="binary" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-base">Reconnaissance & Penetration Workflows</h4>
+                                        <p class="text-slate-400 text-xs leading-relaxed mt-1">
+                                            Practicing robust ethical hacking techniques including target profiling, automated scanning pipelines, surface assessments, and network analysis.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog / Technical Writeups Section -->
+            <section id="blog" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="newspaper" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // TECHNICAL_REPORTS"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Blog & Technical Writeups"></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-fuchsia-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Article 1 -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-full group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[9px] font-mono text-fuchsia-400 bg-fuchsia-500/10 border border-fuchsia-500/20 px-2 py-0.5 rounded">SOC OPERATIONS</span>
+                                <span class="text-[10px] font-mono text-slate-500">5 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-fuchsia-400 transition-colors mb-3 font-mono">How SOC Alert Triage Works in Real Environments</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                Explains how security analysts validate complex telemetry streams, isolate indicators, eliminate white noise, and prioritize active threats.
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500">Suggested Intel</span>
+                            <span class="text-xs font-mono text-fuchsia-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">Read File <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-full group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[9px] font-mono text-fuchsia-400 bg-fuchsia-500/10 border border-fuchsia-500/20 px-2 py-0.5 rounded">MITRE ATT&CK</span>
+                                <span class="text-[10px] font-mono text-slate-500">7 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-fuchsia-400 transition-colors mb-3 font-mono">Understanding MITRE ATT&CK for Security Monitoring</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                Covers critical attacker tactical frameworks, tracking common execution pathways, and mapping detections against enterprise baselines.
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500">Suggested Intel</span>
+                            <span class="text-xs font-mono text-fuchsia-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">Read File <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-full group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[9px] font-mono text-fuchsia-400 bg-fuchsia-500/10 border border-fuchsia-500/20 px-2 py-0.5 rounded">THREAT ANALYSIS</span>
+                                <span class="text-[10px] font-mono text-slate-500">4 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-fuchsia-400 transition-colors mb-3 font-mono">Top Indicators of Phishing Emails</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                Highlights technical markers, email header inspection, verification of micro-domains, and indicators of credential harvesting attempts.
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500">Suggested Intel</span>
+                            <span class="text-xs font-mono text-fuchsia-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">Read File <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Article 4 -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-full group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[9px] font-mono text-fuchsia-400 bg-fuchsia-500/10 border border-fuchsia-500/20 px-2 py-0.5 rounded">AUTHENTICATION</span>
+                                <span class="text-[10px] font-mono text-slate-500">6 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-fuchsia-400 transition-colors mb-3 font-mono">Investigating Suspicious Login Activity</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                A complete incident response playbook analyzing anomalies, correlating geospatial markers, and mitigating compromised identity portals.
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500">Suggested Intel</span>
+                            <span class="text-xs font-mono text-fuchsia-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">Read File <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Article 5 -->
+                    <div class="glass-card p-6 flex flex-col justify-between h-full group lg:col-span-2">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[9px] font-mono text-fuchsia-400 bg-fuchsia-500/10 border border-fuchsia-500/20 px-2 py-0.5 rounded">ARCHITECTURE</span>
+                                <span class="text-[10px] font-mono text-slate-500">8 min read</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-fuchsia-400 transition-colors mb-3 font-mono">SIEM vs EDR: Understanding Modern Security Operations</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                A direct comparison of SIEM aggregation capabilities versus endpoint telemetry detection systems. Explains how engineering teams integrate these layers to build highly visible defensive topologies.
+                            </p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500">Suggested Intel</span>
+                            <span class="text-xs font-mono text-fuchsia-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">Read File <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="mb-40 scroll-mt-24 reveal-section">
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 text-violet-400 mb-2">
+                        <i data-lucide="antenna" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono tracking-widest uppercase type-target" data-typewriter="System_Module // COMMS_UPLINK"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                        <span class="type-target" data-typewriter="Keep Touch On "></span>
+                    </h2>
+                    <div class="h-1 w-20 bg-blue-500 mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- Availability & Domains -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card p-8 h-full border-l-4 border-l-blue-500 flex flex-col justify-between">
+                            <div>
+                                <span class="inline-block text-[10px] font-mono text-blue-400 uppercase tracking-widest px-2.5 py-1 bg-blue-500/10 border border-blue-500/20 rounded mb-4">HANDSHAKE_READY</span>
+                                <h3 class="text-2xl font-bold text-white leading-tight mb-4">Available for Opportunities</h3>
+                                <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                                    Looking to secure enterprise ecosystems, automate detection pipelines, or audit system controls. Let's start a secure conversation.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[10px] font-mono px-3 py-1.5 bg-slate-900 border border-white/5 rounded text-slate-300">Cybersecurity</span>
+                                    <span class="text-[10px] font-mono px-3 py-1.5 bg-slate-900 border border-white/5 rounded text-slate-300">SOC Analyst</span>
+                                    <span class="text-[10px] font-mono px-3 py-1.5 bg-slate-900 border border-white/5 rounded text-slate-300">IT Audit</span>
+                                    <span class="text-[10px] font-mono px-3 py-1.5 bg-slate-900 border border-white/5 rounded text-slate-300">GRC</span>
+                                    <span class="text-[10px] font-mono px-3 py-1.5 bg-slate-900 border border-white/5 rounded text-slate-300">Security Operations</span>
+                                    <span class="text-[10px] font-mono px-3 py-1.5 bg-slate-900 border border-white/5 rounded text-slate-300">Threat Monitoring</span>
+                                </div>
+                            </div>
+                            <div class="mt-8 pt-6 border-t border-white/5 flex items-center gap-3 text-xs text-slate-400 font-mono">
+                                <i data-lucide="map-pin" class="text-blue-400 w-5 h-5 shrink-0"></i>
+                                <span>Deployment Center: Chennai, Tamil Nadu, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Mechanics -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card p-8 h-full border-l-4 border-l-violet-500 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                                    <i data-lucide="terminal" class="text-violet-400 w-5 h-5"></i> Connection Channels
+                                </h3>
+                                <div class="space-y-4">
+                                    <a href="mailto:siva.cyberr@gmail.com" class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/5 hover:border-violet-500/30 transition-all group">
+                                        <div class="p-2 bg-violet-500/10 rounded-lg text-violet-400 shrink-0">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </div>
+                                        <div class="truncate">
+                                            <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Email Uplink</div>
+                                            <div class="text-sm font-semibold text-white group-hover:text-violet-400 transition-colors truncate">siva.cyberr@gmail.com</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://www.linkedin.com/in/sivananthanm/" target="_blank" class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/5 hover:border-violet-500/30 transition-all group">
+                                        <div class="p-2 bg-violet-500/10 rounded-lg text-violet-400 shrink-0">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">LinkedIn Portal</div>
+                                            <div class="text-sm font-semibold text-white group-hover:text-violet-400 transition-colors">linkedin/in/sivananthanm</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://github.com/sivananthanm/" target="_blank" class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/5 hover:border-violet-500/30 transition-all group">
+                                        <div class="p-2 bg-violet-500/10 rounded-lg text-violet-400 shrink-0">
+                                            <i data-lucide="github" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">GitHub Repository</div>
+                                            <div class="text-sm font-semibold text-white group-hover:text-violet-400 transition-colors">github/sivananthanm</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mt-6 text-[9px] font-mono text-slate-600 uppercase tracking-widest text-center">
+                                SECURE_CHANNEL: RSA_4096_ENCRYPTED
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/5 bg-obsidian py-16 px-6">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+                <div>
+                    <div class="flex items-center gap-3 font-mono font-bold text-white mb-4">
+                        <i data-lucide="shield" class="text-violet-400 w-6 h-6"></i>
+                        <span class="text-xl tracking-tighter">SIVANANTHAN_M.</span>
+                    </div>
+                    <p class="text-sm text-slate-500 font-mono max-w-sm mb-6 leading-relaxed">Bridging the gap between raw telemetry and executive strategy. Securing sentient digital ecosystems through quantitative risk modeling.</p>
+                    <div class="flex gap-2">
+                        <span class="text-[10px] text-slate-600 font-mono tracking-widest border border-white/5 px-2 py-1 rounded">BUILD_2024.10.V</span>
+                        <span class="text-[10px] text-violet-600 font-mono tracking-widest border border-violet-500/10 px-2 py-1 rounded animate-pulse">SYSTEM_ONLINE</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-20">
+                    <div>
+                        <h5 class="text-[10px] font-mono text-violet-400 uppercase mb-6 tracking-widest">Connect</h5>
+                        <div class="flex flex-col gap-4 text-sm font-mono text-slate-500">
+                            <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                            <a href="#" class="hover:text-white transition-colors">GitHub</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="text-[10px] font-mono text-violet-400 uppercase mb-6 tracking-widest">Protocol</h5>
+                        <div class="flex flex-col gap-4 text-sm font-mono text-slate-500">
+                            <a href="#home" class="hover:text-white transition-colors">Initialization</a>
+                            <a href="#about" class="hover:text-white transition-colors">About_Me</a>
+                            <a href="#systems" class="hover:text-white transition-colors">Core_Stack</a>
+                            <a href="#impact" class="hover:text-white transition-colors">Impact_Metrics</a>
+                            <a href="#academic" class="hover:text-white transition-colors">Academic_Log</a>
+                            <a href="#journey" class="hover:text-white transition-colors">Current_Journey</a>
+                            <a href="#blog" class="hover:text-white transition-colors">Technical_Reports</a>
+                            <a href="#contact" class="hover:text-white transition-colors">Secure_Comms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between gap-4 text-[10px] font-mono text-slate-600 uppercase tracking-[0.2em]">
+                <span>&copy; 2026 THE_SENTIENCE_GRID // NON-DISCLOSURE_ENFORCED</span>
+                <span>LATENCY: 0.002MS // NODE: CLOUD_EDGE_1</span>
+            </div>
+        </footer>
+
+        <script>
+            lucide.createIcons();
+
+            // Welcome Modal
+            const welcomeModal = document.getElementById('welcome-modal');
+            function showModal() { welcomeModal.classList.remove('hidden'); }
+            function closeModal() { welcomeModal.classList.add('hidden'); }
+
+            // Data Streams
+            const streamContainer = document.getElementById('data-stream-container');
+            function createParticle() {
+                const particle = document.createElement('div');
+                const color = ['#a855f7', '#3b82f6', '#f472b6'][Math.floor(Math.random() * 3)];
+                particle.className = 'absolute h-px w-48 bg-gradient-to-r from-transparent via-current to-transparent opacity-0';
+                particle.style.color = color;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.animate([
+                    { opacity: 0, transform: 'translateX(-100px)' },
+                    { opacity: 0.3, offset: 0.5 },
+                    { opacity: 0, transform: 'translateX(100px)' }
+                ], { duration: 4000 + Math.random() * 6000, iterations: Infinity, delay: Math.random() * 10000 });
+                streamContainer.appendChild(particle);
+            }
+            for(let i=0; i<20; i++) createParticle();
+
+            // Sequential Typewriter Animation for Hero
+            const taglineText = "[Access_Granted] Sivananthan M. // Cybersecurity & IT Risk Professional";
+            const headingLine1 = "Transforming Risk";
+            const headingLine2 = "Into Resilience.";
+
+            const taglineEl = document.getElementById('hero-tagline');
+            const line1El = document.getElementById('heading-line-1');
+            const line2El = document.getElementById('heading-line-2');
+            const ctaGroup = document.getElementById('hero-cta-group');
+
+            function typeLine(element, text, speed, callback) {
+                let i = 0;
+                element.textContent = "";
+                element.classList.add('typewriter-cursor');
+                const timer = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(timer);
+                        element.classList.remove('typewriter-cursor');
+                        if (callback) callback();
+                    }
+                }, speed);
+            }
+
+            // Global Typewriter Manager
+            const typedElements = new Set();
+            function handleTypewriter(target) {
+                if (typedElements.has(target)) return;
+                const text = target.getAttribute('data-typewriter');
+                if (!text) return;
+
+                typedElements.add(target);
+                typeLine(target, text, 40);
+            }
+
+            window.onload = function() {
+                // Initial Hero Typing
+                typeLine(taglineEl, taglineText, 30, () => {
+                    typeLine(line1El, headingLine1, 50, () => {
+                        typeLine(line2El, headingLine2, 50, () => {
+                            ctaGroup.classList.remove('opacity-0', 'translate-y-4');
+                        });
+                    });
+                });
+                setTimeout(showModal, 1500);
+            };
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Find all typewriter targets in this section and trigger them
+                        const targets = entry.target.querySelectorAll('[data-typewriter]');
+                        targets.forEach(target => handleTypewriter(target));
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            document.querySelectorAll('.reveal-section').forEach(section => revealObserver.observe(section));
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
