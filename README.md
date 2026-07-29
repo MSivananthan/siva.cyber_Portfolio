@@ -1,4 +1,4 @@
-# 🛡️ Sivananthan M | Cybersecurity Portfolio
+#  Sivananthan M | Cybersecurity Portfolio
 
 <div align="center">
 
